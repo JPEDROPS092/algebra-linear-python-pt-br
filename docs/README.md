@@ -53,6 +53,6 @@ Para parar o servidor: `Ctrl + C` no terminal.
 1. Faça commit da pasta `docs/` no branch `main`.
 2. No repositório: **Settings → Pages**.
 3. Em *Source*, escolha **Deploy from a branch** → Branch **`main`** → pasta **`/docs`** → *Save*.
-4. Aguarde ~1 min; o site fica em `https://SEU_USUARIO.github.io/algebra-linear-python-pt-br/`.
+4. Aguarde ~1 min; o site fica em `https://jpedrops092.github.io/algebra-linear-python-pt-br/`.
 
-Lembre de trocar `SEU_USUARIO` nos links do `index.html` e `main.js`.
+Os links do GitHub e dos notebooks (GitHub + Colab) já apontam para `JPEDROPS092/algebra-linear-python-pt-br` (`index.html` e `main.js`).

@@ -1,6 +1,10 @@
 /* Renderização do site — data-driven a partir de CONTENT (content.js) */
 (function () {
-  const REPO = "https://github.com/SEU_USUARIO/algebra-linear-python-pt-br";
+  const REPO = "https://github.com/JPEDROPS092/algebra-linear-python-pt-br";
+  const GH_USER = "JPEDROPS092", GH_BRANCH = "main";
+  const nbPath = s => `notebooks/${s.chap.dir}/${s.nb}`;
+  const ghNbUrl = s => `${REPO}/blob/${GH_BRANCH}/${nbPath(s)}`;
+  const colabUrl = s => `https://colab.research.google.com/github/${GH_USER}/algebra-linear-python-pt-br/blob/${GH_BRANCH}/${nbPath(s)}`;
   const flat = [];
   CONTENT.forEach(ch => ch.sections.forEach(s => flat.push({ ...s, chap: ch })));
 
@@ -118,7 +122,8 @@
       <h1>${s.code} · ${s.title}</h1>
       <div class="sub">${s.en} — páginas ${s.pages}</div>
       <div class="tags">
-        <span class="tag nb">📓 ${s.nb}</span>
+        <a class="tag nb" href="${ghNbUrl(s)}" target="_blank" rel="noopener">📓 ${s.nb}</a>
+        <a class="tag nb" href="${colabUrl(s)}" target="_blank" rel="noopener">▶ Colab</a>
         ${s.tags.map(t => `<span class="tag">${t}</span>`).join("")}
       </div>
       <h2>Teoria</h2>

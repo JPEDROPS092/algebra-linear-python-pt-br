@@ -577,11 +577,16 @@ for i,l in enumerate(vals):
   }},
  {code:"5B",id:"05B",nb:"05B_minimal_polynomial.ipynb",title:"Autovetores e matrizes triangulares",en:"Eigenvectors and Upper-Triangular Matrices",pages:"143–150",
   tags:["Polinômio de operador","Triangular","Existência de autovalor"],
-  body:R`<p>Polinômios aplicados a operadores: \(p(T)=a_0I+a_1T+\dots+a_mT^m\). Vale \(p(T)q(T)=(pq)(T)\).</p>
-  <div class="callout thm"><div class="lbl">Existência de autovalores</div>
-  <p>Todo operador em espaço complexo de dimensão finita \(>0\) tem ao menos um autovalor.</p></div>
-  <div class="callout thm"><div class="lbl">Forma triangular superior</div>
-  <p>Sobre \(\mathbb{C}\), todo operador possui uma base na qual sua matriz é triangular superior. Os autovalores são exatamente as entradas da diagonal.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">5.17–5.20 — Polinômios de um operador</div>
+  <p>Aplica-se um polinômio a um operador: \(p(T)=a_0I+a_1T+\dots+a_mT^m\), onde \(T^k\) é a composição \(k\) vezes. Vale \((pq)(T)=p(T)q(T)\) e, em particular, quaisquer dois polinômios de \(T\) <b>comutam</b>: \(p(T)q(T)=q(T)p(T)\).</p></div>
+  <div class="callout thm"><div class="lbl">5.21 — Existência de autovalores (sobre \(\mathbb{C}\))</div>
+  <p>Todo operador em um espaço vetorial <b>complexo</b> de dimensão finita \(>0\) tem ao menos um autovalor. (A prova usa que \(v,Tv,\dots,T^nv\) são \(n+1\) vetores, logo dependentes, e fatora o polinômio resultante pelo Teorema Fundamental da Álgebra.)</p></div>
+  <div class="callout def"><div class="lbl">Definição 5.24 / 5.25 — Matriz triangular superior</div>
+  <p>A <b>diagonal</b> de uma matriz quadrada vai do canto superior esquerdo ao inferior direito. A matriz é <b>triangular superior</b> se todas as entradas <em>abaixo</em> da diagonal são \(0\).</p></div>
+  <div class="callout thm"><div class="lbl">5.26 — Condições para triangular superior</div>
+  <p>Para uma base \(v_1,\dots,v_n\), são equivalentes: (a) \(\mathcal{M}(T)\) é triangular superior; (b) \(Tv_j\in\operatorname{span}(v_1,\dots,v_j)\) para todo \(j\); (c) \(\operatorname{span}(v_1,\dots,v_j)\) é invariante sob \(T\) para todo \(j\).</p></div>
+  <div class="callout thm"><div class="lbl">5.27 / 5.30 / 5.32 — Forma triangular sobre \(\mathbb{C}\)</div>
+  <p>Sobre \(\mathbb{C}\), <b>todo</b> operador tem uma base na qual sua matriz é triangular superior (5.27). Nesse caso: \(T\) é <b>invertível</b> \(\iff\) todas as entradas da diagonal são \(\ne0\) (5.30); e os <b>autovalores</b> são exatamente as entradas da diagonal (5.32).</p></div>`,
   py:R`import numpy as np
 from scipy.linalg import schur
 
@@ -596,9 +601,16 @@ print("Schur triangular:\n", np.round(Tri,3))
 print("diagonal:", np.round(np.diag(Tri),3))`},
  {code:"5C",id:"05C",nb:"05C_upper_triangular_matrices.ipynb",title:"Autoespaços e matrizes diagonais",en:"Eigenspaces and Diagonal Matrices",pages:"154–160",
   tags:["Autoespaço","Diagonalização"],
-  body:R`<p>O <b>autoespaço</b> \(E(\lambda,T)=\operatorname{null}(T-\lambda I)\) reúne os autovetores de \(\lambda\) e o \(0\).</p>
-  <div class="callout thm"><div class="lbl">Condições para diagonalização</div>
-  <p>\(T\) é diagonalizável \(\iff V\) tem base de autovetores \(\iff V=E(\lambda_1,T)\oplus\dots\oplus E(\lambda_m,T)\) \(\iff \sum\dim E(\lambda_j,T)=\dim V\). Ter \(\dim V\) autovalores distintos é suficiente.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 5.34 / 5.36 — Matriz diagonal e autoespaço</div>
+  <p>Uma matriz é <b>diagonal</b> se é \(0\) fora da diagonal. O <b>autoespaço</b> de \(\lambda\) é
+  \[E(\lambda,T)=\operatorname{null}(T-\lambda I),\]
+  que reúne todos os autovetores de \(\lambda\) e o vetor \(0\). \(\lambda\) é autovalor \(\iff E(\lambda,T)\ne\{0\}\).</p></div>
+  <div class="callout thm"><div class="lbl">5.38 — Soma de autoespaços é direta</div>
+  <p>Para autovalores distintos \(\lambda_1,\dots,\lambda_m\), a soma \(E(\lambda_1,T)+\dots+E(\lambda_m,T)\) é <b>direta</b>, e \(\sum\dim E(\lambda_j,T)\le\dim V\).</p></div>
+  <div class="callout thm"><div class="lbl">5.41 — Condições equivalentes à diagonalização</div>
+  <p>\(T\) é <b>diagonalizável</b> (5.39) \(\iff\) \(V\) tem base de autovetores \(\iff\) \(V\) é soma direta de subespaços invariantes de dimensão 1 \(\iff V=E(\lambda_1,T)\oplus\dots\oplus E(\lambda_m,T)\) \(\iff \sum\dim E(\lambda_j,T)=\dim V\).</p></div>
+  <div class="callout thm"><div class="lbl">5.44 — Autovalores distintos bastam</div>
+  <p>Se \(T\) tem \(\dim V\) autovalores <b>distintos</b>, então \(T\) é diagonalizável. (A recíproca é falsa: a identidade é diagonalizável com um só autovalor.)</p></div>`,
   py:R`import numpy as np
 
 A = np.array([[1,0,0],[1,2,0],[1,1,3.]])
@@ -609,9 +621,12 @@ print("diagonalizável ?", np.allclose(P @ D @ np.linalg.inv(P), A))
 print("D =\n", np.round(D,3))`},
  {code:"5D",id:"05D",nb:"05D_diagonalizable_operators.ipynb",title:"Operadores diagonalizáveis",en:"Diagonalizable Operators",pages:"163–172",
   tags:["Multiplicidade","Potências"],
-  body:R`<p>A diagonalização \(A=PDP^{-1}\) simplifica potências e funções: \(A^k=PD^kP^{-1}\).</p>
-  <div class="callout thm"><div class="lbl">Diagonalização e multiplicidade</div>
-  <p>\(T\) é diagonalizável sse, para cada autovalor, a multiplicidade geométrica \(\dim E(\lambda,T)\) iguala a algébrica.</p></div>`,
+  body:R`<p>Se \(T\) é diagonalizável, numa base de autovetores a matriz vira \(D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)\); em termos de matrizes, \(A=PDP^{-1}\), com as colunas de \(P\) sendo os autovetores.</p>
+  <div class="callout thm"><div class="lbl">Aplicação — potências e funções</div>
+  <p>A diagonalização torna trivial calcular potências: \(A^k=PD^kP^{-1}\), e \(D^k=\operatorname{diag}(\lambda_1^k,\dots,\lambda_n^k)\). Mesma ideia para qualquer \(p(A)=P\,p(D)\,P^{-1}\). É a base de recorrências lineares (ex.: fórmula fechada de Fibonacci).</p></div>
+  <div class="callout thm"><div class="lbl">Critério (recap de 5.41 / 5.44)</div>
+  <p>\(T\) é diagonalizável \(\iff \sum_j\dim E(\lambda_j,T)=\dim V\). Ter \(\dim V\) autovalores distintos é suficiente (5.44), mas não necessário.</p></div>
+  <p class="hint">Obs.: a linguagem de <em>multiplicidade algébrica</em> vs. <em>geométrica</em> (e o critério "diagonalizável \(\iff\) multiplicidades coincidem") só é desenvolvida no Capítulo 8 desta edição — ver [[cap08]].</p>`,
   py:R`import numpy as np
 
 A = np.array([[2,1],[0,3.]])
@@ -625,9 +640,11 @@ print("A^10 =\n", np.round(Ak,1))
 print("confere ?", np.allclose(Ak, np.linalg.matrix_power(A, k)))`},
  {code:"5E",id:"05E",nb:"05E_commuting_operators.ipynb",title:"Operadores comutantes",en:"Commuting Operators",pages:"175–179",
   tags:["Comutação","Diagonalização simultânea"],
-  body:R`<p>\(S\) e \(T\) <b>comutam</b> se \(ST=TS\).</p>
+  body:R`<div class="callout def"><div class="lbl">Definição — Operadores comutantes</div>
+  <p>\(S,T\in\mathcal{L}(V)\) <b>comutam</b> se \(ST=TS\). Exemplo importante: quaisquer dois polinômios de um mesmo operador comutam, \(p(T)q(T)=q(T)p(T)\) (ver [[cap05_eigenvalues]] 5B).</p></div>
   <div class="callout thm"><div class="lbl">Diagonalização simultânea</div>
-  <p>Dois operadores diagonalizáveis são <b>simultaneamente</b> diagonalizáveis \(\iff\) comutam. Comutantes sempre partilham um autovetor comum (sobre \(\mathbb{C}\)).</p></div>`,
+  <p>Dois operadores <b>diagonalizáveis</b> são <b>simultaneamente</b> diagonalizáveis (existe uma base comum de autovetores) <b>se e somente se</b> comutam. Sobre \(\mathbb{C}\), operadores que comutam sempre compartilham ao menos um autovetor.</p></div>
+  <p class="hint">Obs.: "operadores comutantes" é uma seção da 4ª edição; nesta edição (3ª) o tema aparece de forma esparsa. O conteúdo acima é padrão e correto, mas sem número de teorema na 3ª ed.</p>`,
   py:R`import numpy as np
 
 A = np.array([[2,0],[0,3.]])
@@ -642,12 +659,18 @@ print("AB = BA =\n", A@B)`}]},
  sections:[
  {code:"6A",id:"06A",nb:"06A_inner_products_and_norms.ipynb",title:"Produtos internos e normas",en:"Inner Products and Norms",pages:"182–191",
   tags:["Produto interno","Norma","Cauchy–Schwarz"],
-  body:R`<p>Um <b>produto interno</b> \(\langle\cdot,\cdot\rangle\) é positivo-definido, aditivo, homogêneo na 1ª entrada e conjugado-simétrico: \(\langle u,v\rangle=\overline{\langle v,u\rangle}\).</p>
-  <div class="callout def"><div class="lbl">Norma</div>
-  <p>\(\lVert v\rVert=\sqrt{\langle v,v\rangle}\).</p></div>
-  <div class="callout thm"><div class="lbl">Cauchy–Schwarz e triângulo</div>
-  <p>\[|\langle u,v\rangle|\le \lVert u\rVert\,\lVert v\rVert,\qquad \lVert u+v\rVert\le\lVert u\rVert+\lVert v\rVert.\]
-  Vetores são ortogonais quando \(\langle u,v\rangle=0\); vale então Pitágoras \(\lVert u+v\rVert^2=\lVert u\rVert^2+\lVert v\rVert^2\).</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 6.3 — Produto interno</div>
+  <p>Um <b>produto interno</b> em \(V\) associa a cada par \(u,v\) um escalar \(\langle u,v\rangle\in\mathbb{F}\) satisfazendo: <b>positividade</b> \(\langle v,v\rangle\ge0\); <b>definitude</b> \(\langle v,v\rangle=0\iff v=0\); <b>aditividade</b> e <b>homogeneidade</b> na 1ª entrada; e <b>simetria conjugada</b> \(\langle u,v\rangle=\overline{\langle v,u\rangle}\). Ex.: o produto escalar em \(\mathbb{R}^n\) e \(\langle w,z\rangle=\sum w_j\overline{z_j}\) em \(\mathbb{C}^n\).</p></div>
+  <div class="callout def"><div class="lbl">Definição 6.8 — Norma</div>
+  <p>\(\lVert v\rVert=\sqrt{\langle v,v\rangle}\). Vale \(\lVert\lambda v\rVert=|\lambda|\,\lVert v\rVert\) (6.10). Dois vetores são <b>ortogonais</b> se \(\langle u,v\rangle=0\) (6.11); o \(0\) é ortogonal a todo vetor.</p></div>
+  <div class="callout thm"><div class="lbl">6.13 — Teorema de Pitágoras</div>
+  <p>Se \(u\perp v\), então \(\lVert u+v\rVert^2=\lVert u\rVert^2+\lVert v\rVert^2\).</p></div>
+  <div class="callout thm"><div class="lbl">6.14 / 6.15 — Decomposição ortogonal e Cauchy–Schwarz</div>
+  <p>Todo \(u\) decompõe-se como \(u=\dfrac{\langle u,v\rangle}{\lVert v\rVert^2}v+w\) com \(w\perp v\). Daí sai a desigualdade de <b>Cauchy–Schwarz</b>:
+  \[|\langle u,v\rangle|\le \lVert u\rVert\,\lVert v\rVert,\]
+  com igualdade \(\iff\) um é múltiplo escalar do outro.</p></div>
+  <div class="callout thm"><div class="lbl">6.18 / 6.22 — Triângulo e paralelogramo</div>
+  <p>\[\lVert u+v\rVert\le\lVert u\rVert+\lVert v\rVert,\qquad \lVert u+v\rVert^2+\lVert u-v\rVert^2=2(\lVert u\rVert^2+\lVert v\rVert^2).\]</p></div>`,
   py:R`import numpy as np
 
 u = np.array([1., 2., 3.])
@@ -661,9 +684,17 @@ print("Cauchy–Schwarz:", abs(ip), "≤", np.linalg.norm(u)*np.linalg.norm(v))
 print("ortogonais ?", np.isclose(ip, 0))`},
  {code:"6B",id:"06B",nb:"06B_orthonormal_bases.ipynb",title:"Bases ortonormais",en:"Orthonormal Bases",pages:"197–207",
   tags:["Ortonormal","Gram–Schmidt","Projeção"],
-  body:R`<p>Uma lista é <b>ortonormal</b> se os vetores são unitários e mutuamente ortogonais. Numa base ortonormal, \(v=\sum_j\langle v,e_j\rangle e_j\) e \(\lVert v\rVert^2=\sum_j|\langle v,e_j\rangle|^2\) (Parseval).</p>
-  <div class="callout thm"><div class="lbl">Gram–Schmidt</div>
-  <p>Qualquer lista independente pode ser ortonormalizada mantendo os spans parciais. Logo todo espaço com produto interno de dimensão finita possui base ortonormal.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 6.23 / 6.27 — Ortonormal</div>
+  <p>Uma lista \(e_1,\dots,e_m\) é <b>ortonormal</b> se \(\langle e_j,e_k\rangle=\delta_{jk}\) (unitários e mutuamente ortogonais). Uma <b>base ortonormal</b> é uma lista ortonormal que também é base.</p></div>
+  <div class="callout thm"><div class="lbl">6.25 / 6.26 / 6.28</div>
+  <p>\(\lVert a_1e_1+\dots+a_me_m\rVert^2=|a_1|^2+\dots+|a_m|^2\) (6.25). Toda lista ortonormal é <b>linearmente independente</b> (6.26); se tiver comprimento \(\dim V\), é base ortonormal (6.28).</p></div>
+  <div class="callout thm"><div class="lbl">6.30 — Coordenadas em base ortonormal (Parseval)</div>
+  <p>Se \(e_1,\dots,e_n\) é base ortonormal, então
+  \[v=\langle v,e_1\rangle e_1+\dots+\langle v,e_n\rangle e_n,\qquad \lVert v\rVert^2=\sum_j|\langle v,e_j\rangle|^2.\]</p></div>
+  <div class="callout thm"><div class="lbl">6.31 / 6.34 / 6.35 — Gram–Schmidt</div>
+  <p>O <b>procedimento de Gram–Schmidt</b> transforma qualquer lista independente numa ortonormal com os mesmos spans parciais. Consequências: todo espaço com produto interno de dim. finita <b>tem base ortonormal</b> (6.34), e toda lista ortonormal se <b>estende</b> a uma base ortonormal (6.35).</p></div>
+  <div class="callout thm"><div class="lbl">6.37 / 6.38 / 6.42 — Schur e Riesz</div>
+  <p><b>Teorema de Schur</b> (6.38): sobre \(\mathbb{C}\), todo operador tem matriz triangular superior em <b>alguma base ortonormal</b>. <b>Teorema de Riesz</b> (6.42): todo funcional linear \(\varphi\) em \(V\) (dim. finita) se escreve de forma única como \(\varphi(v)=\langle v,u\rangle\) para um único \(u\in V\).</p></div>`,
   py:R`import numpy as np
 
 A = np.array([[1., 1., 0.],
@@ -674,9 +705,21 @@ print("Qᵀ Q = I ?", np.allclose(Q.T @ Q, np.eye(3)))
 print("Q =\n", np.round(Q, 3))`},
  {code:"6C",id:"06C",nb:"06C_orthogonal_complements.ipynb",title:"Complementos ortogonais",en:"Orthogonal Complements",pages:"211–224",
   tags:["Complemento ortogonal","Projeção","Mínimos quadrados"],
-  body:R`<p>O <b>complemento ortogonal</b> \(U^\perp=\{v:\langle v,u\rangle=0\ \forall u\in U\}\) satisfaz \(V=U\oplus U^\perp\).</p>
-  <div class="callout thm"><div class="lbl">Melhor aproximação</div>
-  <p>A projeção ortogonal \(P_U v\) é o ponto de \(U\) mais próximo de \(v\): \(\lVert v-P_Uv\rVert\le\lVert v-u\rVert\ \forall u\in U\). É a base dos <b>mínimos quadrados</b>.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 6.45 — Complemento ortogonal</div>
+  <p>\(U^\perp=\{v\in V:\langle v,u\rangle=0\ \forall u\in U\}\). É sempre um subespaço; \(\{0\}^\perp=V\), \(V^\perp=\{0\}\) (6.46).</p></div>
+  <div class="callout thm"><div class="lbl">6.47 / 6.50 / 6.51</div>
+  <p>Se \(U\) tem dimensão finita, então \(V=U\oplus U^\perp\); logo \(\dim U^\perp=\dim V-\dim U\) (6.50) e \((U^\perp)^\perp=U\) (6.51).</p></div>
+  <div class="callout def"><div class="lbl">Definição 6.53 — Projeção ortogonal \(P_U\)</div>
+  <p>Escrevendo \(v=u+w\) com \(u\in U\), \(w\in U^\perp\), define-se \(P_Uv=u\). Numa base ortonormal \(e_1,\dots,e_m\) de \(U\): \(P_Uv=\sum_j\langle v,e_j\rangle e_j\) (6.55). Vale \(P_U^2=P_U\) e \(\lVert P_Uv\rVert\le\lVert v\rVert\).</p></div>
+  <div class="callout thm"><div class="lbl">6.56 — Melhor aproximação (mínimos quadrados)</div>
+  <p>\(P_Uv\) é o ponto de \(U\) <b>mais próximo</b> de \(v\):
+  \[\lVert v-P_Uv\rVert\le\lVert v-u\rVert\quad\forall u\in U,\]
+  com igualdade só em \(u=P_Uv\). É a base dos mínimos quadrados e da melhor aproximação de funções por polinômios.</p></div>
+  <p class="hint">Arraste \(v\) e a direção da reta \(U\): \(P_Uv\) é o pé da perpendicular, e o resíduo \(v-P_Uv\) é ortogonal a \(U\).</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-6Cproj" class="jxg-board" style="height:340px"></div>
+      <figcaption>Projeção ortogonal sobre a reta \(U\): \(P_Uv\) minimiza a distância de \(v\) a \(U\).</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 # Mínimos quadrados: melhor reta y = a x + b
@@ -684,16 +727,41 @@ x = np.array([0,1,2,3.]); y = np.array([1, 3, 4, 6.])
 A = np.vstack([x, np.ones_like(x)]).T
 coef, *_ = np.linalg.lstsq(A, y, rcond=None)   # projeção ortogonal
 print("a, b =", np.round(coef, 4))
-print("resíduo ⟂ ao span:", np.round(A.T @ (y - A@coef), 10))`}]},
+print("resíduo ⟂ ao span:", np.round(A.T @ (y - A@coef), 10))`,
+  draw:function(JXG){
+    const b=JXG.JSXGraph.initBoard("jxg-6Cproj",{boundingbox:[-5,5,5,-5],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    const d=b.create("point",[3,1],{name:"",size:2,strokeColor:"#2ea836",fillColor:"#2ea836"});
+    b.create("line",[[0,0],d],{strokeColor:"#2ea836",strokeWidth:1.4,name:"U",withLabel:true,
+      label:{position:"rt",fontSize:15,strokeColor:"#2ea836"}});
+    const v=b.create("point",[-1,3.5],{name:"v",size:4,strokeColor:"#a3121b",fillColor:"#d3202a",label:{fontSize:16}});
+    const t=()=>{const dd=d.X()*d.X()+d.Y()*d.Y(); return dd<1e-9?0:(v.X()*d.X()+v.Y()*d.Y())/dd;};
+    const p=b.create("point",[()=>t()*d.X(),()=>t()*d.Y()],
+      {name:"P_U v",size:3,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:15}});
+    b.create("arrow",[[0,0],v],{strokeColor:"#d3202a",strokeWidth:2.5,lastArrow:{size:6}});
+    b.create("arrow",[[0,0],p],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    b.create("segment",[v,p],{strokeColor:"#9fb0c0",strokeWidth:1.6,dash:2});
+    b.create("text",[-4.7,4.4,()=>{
+      const tt=t(), rx=v.X()-tt*d.X(), ry=v.Y()-tt*d.Y();
+      return "distância ‖v − P_U v‖ = "+Math.hypot(rx,ry).toFixed(2);
+    }],{fontSize:14,strokeColor:"#0d1117",cssStyle:"font-weight:600"});
+  }}]},
 
 /* ============================ CAPÍTULO 7 ============================ */
 {num:7,id:"cap07",title:"Operators on Inner Product Spaces",titlePt:"Operadores em Espaços com Produto Interno",pages:"227–294",dir:"cap07_operators_inner_product",
  sections:[
  {code:"7A",id:"07A",nb:"07A_self_adjoint_and_normal.ipynb",title:"Operadores auto-adjuntos e normais",en:"Self-Adjoint and Normal Operators",pages:"228–239",
   tags:["Adjunto","Auto-adjunto","Normal"],
-  body:R`<p>O <b>adjunto</b> \(T^*\) satisfaz \(\langle Tv,w\rangle=\langle v,T^*w\rangle\); em matrizes, \(T^*=\bar T^{\,\top}\) (conjugada transposta).</p>
-  <div class="callout def"><div class="lbl">Auto-adjunto e normal</div>
-  <p>\(T\) é <b>auto-adjunto</b> se \(T=T^*\); é <b>normal</b> se \(TT^*=T^*T\). Autovalores de operadores auto-adjuntos são reais.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 7.2 / 7.8 — Adjunto</div>
+  <p>O <b>adjunto</b> \(T^*\in\mathcal{L}(W,V)\) é definido por
+  \[\langle Tv,w\rangle=\langle v,T^*w\rangle\quad\forall v,w.\]
+  Numa <b>base ortonormal</b>, \(\mathcal{M}(T^*)\) é a <b>conjugada transposta</b> de \(\mathcal{M}(T)\) (7.10). Relações (7.7): \(\operatorname{null}T^*=(\operatorname{range}T)^\perp\) e \(\operatorname{range}T^*=(\operatorname{null}T)^\perp\).</p></div>
+  <div class="callout def"><div class="lbl">Definição 7.11 / 7.18 — Auto-adjunto e normal</div>
+  <p>\(T\) é <b>auto-adjunto</b> (hermitiano) se \(T=T^*\); é <b>normal</b> se comuta com o adjunto, \(TT^*=T^*T\). Todo auto-adjunto é normal.</p></div>
+  <div class="callout thm"><div class="lbl">7.13 / 7.15 — Auto-adjuntos ↔ reais</div>
+  <p>Todo autovalor de operador auto-adjunto é <b>real</b> (7.13). Sobre \(\mathbb{C}\), \(T\) é auto-adjunto \(\iff \langle Tv,v\rangle\in\mathbb{R}\) para todo \(v\) (7.15). A analogia: auto-adjunto está para operador como número real está para número complexo.</p></div>
+  <div class="callout thm"><div class="lbl">7.20 / 7.21 / 7.22 — Operadores normais</div>
+  <p>\(T\) é normal \(\iff \lVert Tv\rVert=\lVert T^*v\rVert\) para todo \(v\) (7.20). Então \(T\) e \(T^*\) têm os <b>mesmos autovetores</b>, com autovalores conjugados (7.21), e autovetores de autovalores distintos são <b>ortogonais</b> (7.22).</p></div>`,
   py:R`import numpy as np
 
 A = np.array([[2, 1+1j],[1-1j, 3]])
@@ -705,8 +773,12 @@ N = np.array([[0,-1],[1,0.]])   # normal (NNᵀ = NᵀN) mas não simétrico
 print("normal ?", np.allclose(N@N.T, N.T@N))`},
  {code:"7B",id:"07B",nb:"07B_spectral_theorem.ipynb",title:"Teorema espectral",en:"Spectral Theorem",pages:"243–247",
   tags:["Espectral","Diagonalização ortogonal"],
-  body:R`<div class="callout thm"><div class="lbl">Teorema Espectral</div>
-  <p><b>Complexo:</b> \(T\) é normal \(\iff V\) tem base ortonormal de autovetores de \(T\). <b>Real:</b> \(T\) é auto-adjunto \(\iff V\) tem base ortonormal de autovetores. Em ambos, \(A=UDU^*\) com \(U\) unitária e \(D\) diagonal.</p></div>`,
+  body:R`<p>Os operadores "mais simples" são os que têm matriz <b>diagonal em alguma base ortonormal</b>. O Teorema Espectral caracteriza exatamente quais são — a ferramenta mais útil sobre espaços com produto interno.</p>
+  <div class="callout thm"><div class="lbl">7.24 — Teorema Espectral Complexo</div>
+  <p>Sobre \(\mathbb{C}\), são equivalentes: (a) \(T\) é <b>normal</b>; (b) \(V\) tem base ortonormal de autovetores de \(T\); (c) \(T\) tem matriz diagonal em alguma base ortonormal.</p></div>
+  <div class="callout thm"><div class="lbl">7.29 — Teorema Espectral Real</div>
+  <p>Sobre \(\mathbb{R}\), são equivalentes: (a) \(T\) é <b>auto-adjunto</b>; (b) \(V\) tem base ortonormal de autovetores; (c) \(T\) tem matriz diagonal em alguma base ortonormal.</p></div>
+  <p>Em ambos os casos, em matrizes: \(A=UDU^*\), com \(U\) <b>unitária</b> (colunas = autovetores ortonormais) e \(D\) diagonal (autovalores). Ingredientes da prova real: existência de autovalor para auto-adjunto (7.27) e invariância de \(U^\perp\) sob \(T\) auto-adjunto (7.28).</p>`,
   py:R`import numpy as np
 
 A = np.array([[6, 2],[2, 3.]])     # simétrica real
@@ -716,7 +788,12 @@ print("U ortogonal ?", np.allclose(U.T@U, np.eye(2)))
 print("A = U D Uᵀ ?", np.allclose(U @ D @ U.T, A))`},
  {code:"7C",id:"07C",nb:"07C_positive_operators.ipynb",title:"Operadores positivos",en:"Positive Operators",pages:"251–255",
   tags:["Positivo","Raiz quadrada","Cholesky"],
-  body:R`<p>\(T\) é <b>positivo</b> se auto-adjunto e \(\langle Tv,v\rangle\ge0\) para todo \(v\). Equivale a ter todos os autovalores \(\ge0\), ou a possuir raiz quadrada positiva \(T=S^2\), ou fatoração \(T=R^*R\).</p>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 7.31 / 7.33 — Operador positivo</div>
+  <p>\(T\) é <b>positivo</b> se é auto-adjunto e \(\langle Tv,v\rangle\ge0\) para todo \(v\). (Sobre \(\mathbb{C}\), a condição de auto-adjunto é automática, por 7.15.) Um operador \(R\) é <b>raiz quadrada</b> de \(T\) se \(R^2=T\). Correspondem aos números reais \(\ge0\).</p></div>
+  <div class="callout thm"><div class="lbl">7.35 — Caracterização dos positivos</div>
+  <p>São equivalentes: (a) \(T\) é positivo; (b) \(T\) é auto-adjunto e todos os autovalores são \(\ge0\); (c) \(T\) tem raiz quadrada positiva; (d) \(T\) tem raiz quadrada auto-adjunta; (e) \(T=R^*R\) para algum \(R\).</p></div>
+  <div class="callout thm"><div class="lbl">7.36 — Raiz quadrada única</div>
+  <p>Todo operador positivo tem uma <b>única</b> raiz quadrada positiva, denotada \(\sqrt T\). (Numericamente, via fatoração de Cholesky quando \(T\) é positivo definido.)</p></div>`,
   py:R`import numpy as np
 
 A = np.array([[4, 2],[2, 3.]])         # simétrica, autovalores > 0
@@ -727,9 +804,16 @@ print("Cholesky L=\n", np.round(L,4))
 print("A = L Lᵀ ?", np.allclose(L @ L.T, A))`},
  {code:"7D",id:"07D",nb:"07D_isometries_unitary_factorization.ipynb",title:"Isometrias e decomposição polar",en:"Isometries and Polar Decomposition",pages:"258–268",
   tags:["Isometria","Unitária","Decomposição polar"],
-  body:R`<p>Uma <b>isometria</b> \(S\) preserva normas: \(\lVert Sv\rVert=\lVert v\rVert\); equivale a \(S^*S=I\) (unitária).</p>
-  <div class="callout thm"><div class="lbl">Decomposição polar</div>
-  <p>Todo operador \(T\) fatora \(T=S\sqrt{T^*T}\), com \(S\) isometria — análogo a \(z=\frac{z}{|z|}\,|z|\).</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 7.37 — Isometria</div>
+  <p>\(S\in\mathcal{L}(V)\) é uma <b>isometria</b> se preserva normas: \(\lVert Sv\rVert=\lVert v\rVert\) para todo \(v\). No caso real chama-se <b>ortogonal</b>; no complexo, <b>unitária</b>.</p></div>
+  <div class="callout thm"><div class="lbl">7.42 / 7.43 — Caracterização das isometrias</div>
+  <p>São equivalentes: \(S\) é isometria; \(\langle Su,Sv\rangle=\langle u,v\rangle\) (preserva produto interno); as colunas de \(\mathcal{M}(S)\) numa base ortonormal são ortonormais; \(S^*S=SS^*=I\); \(S\) é invertível com \(S^{-1}=S^*\). Sobre \(\mathbb{C}\) (7.43): \(S\) é isometria \(\iff\) existe base ortonormal de autovetores com autovalores de <b>módulo 1</b>. (As isometrias correspondem aos números do círculo unitário \(|z|=1\).)</p></div>
+  <div class="callout def"><div class="lbl">Notação 7.44</div>
+  <p>Para \(T\) positivo, \(\sqrt T\) é a única raiz quadrada positiva.</p></div>
+  <div class="callout thm"><div class="lbl">7.45 — Decomposição polar</div>
+  <p>Todo operador \(T\in\mathcal{L}(V)\) fatora como
+  \[T=S\sqrt{T^*T},\]
+  com \(S\) isometria e \(\sqrt{T^*T}\) positivo — análogo a \(z=\frac{z}{|z|}\,|z|\) nos complexos. Assim todo operador é o produto de uma isometria por um operador positivo.</p></div>`,
   py:R`import numpy as np
 from scipy.linalg import polar
 
@@ -740,9 +824,19 @@ print("P positiva ?", np.all(np.linalg.eigvalsh(P) >= -1e-9))
 print("A = U P ?", np.allclose(U @ P, A))`},
  {code:"7E",id:"07E",nb:"07E_singular_value_decomposition.ipynb",title:"Decomposição em valores singulares",en:"Singular Value Decomposition",pages:"270–278",
   tags:["SVD","Valores singulares"],
-  body:R`<div class="callout thm"><div class="lbl">SVD</div>
-  <p>Todo \(T\in\mathcal{L}(V,W)\) admite \(A=U\Sigma V^*\), com \(U,V\) unitárias e \(\Sigma\) diagonal com <b>valores singulares</b> \(s_1\ge\dots\ge s_r>0\) — as raízes dos autovalores de \(T^*T\).</p></div>
-  <p>O número de valores singulares positivos é o posto; a SVD é a fatoração central da álgebra linear numérica.</p>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 7.49 — Valores singulares</div>
+  <p>Os <b>valores singulares</b> de \(T\) são os autovalores de \(\sqrt{T^*T}\), cada um repetido conforme sua multiplicidade. São todos \(\ge0\), e há exatamente \(\dim V\) deles.</p></div>
+  <div class="callout thm"><div class="lbl">7.51 — Decomposição em valores singulares</div>
+  <p>Se \(T\) tem valores singulares \(s_1,\dots,s_n\), existem bases ortonormais \(e_1,\dots,e_n\) e \(f_1,\dots,f_n\) de \(V\) tais que
+  \[Tv=s_1\langle v,e_1\rangle f_1+\dots+s_n\langle v,e_n\rangle f_n.\]
+  Em matrizes: \(A=U\Sigma V^*\), com \(U,V\) <b>unitárias</b> e \(\Sigma\) diagonal com os \(s_j\ge0\).</p></div>
+  <div class="callout thm"><div class="lbl">7.52 — Cálculo sem extrair raiz</div>
+  <p>Os valores singulares de \(T\) são as raízes quadradas dos autovalores de \(T^*T\) — o que evita calcular \(\sqrt{T^*T}\) explicitamente. Diferente dos autovalores, a SVD usa <b>duas</b> bases ortonormais, e por isso existe para qualquer operador (é a fatoração central da álgebra linear numérica).</p></div>
+  <p class="hint">A SVD leva a esfera unitária numa elipse: arraste as colunas \(Te_1,Te_2\) e veja os semi-eixos = valores singulares.</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-7Esvd" class="jxg-board" style="height:340px"></div>
+      <figcaption>Imagem do círculo unitário (cinza) sob \(A\): elipse cujos semi-eixos são \(s_1\ge s_2\).</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 A = np.array([[3, 1, 1],[-1, 3, 1.]])
