@@ -489,11 +489,23 @@ print("φ aplicados a e2:", phi @ e2)   # (0,1,0)`}]},
  sections:[
  {code:"4",id:"04",nb:"04_polynomials.ipynb",title:"Polinômios",en:"Polynomials",pages:"119–129",
   tags:["Divisão","Raízes","Fatoração"],
-  body:R`<p>Um polinômio \(p\in\mathcal{P}(\mathbb{F})\) é \(p(z)=a_0+a_1z+\dots+a_mz^m\). Os coeficientes são <b>únicos</b>.</p>
-  <div class="callout thm"><div class="lbl">Algoritmo da divisão</div>
-  <p>Dados \(p,s\) com \(s\ne0\), existem únicos \(q,r\) com \(p=sq+r\) e \(\deg r<\deg s\).</p></div>
-  <div class="callout thm"><div class="lbl">Teorema Fundamental da Álgebra</div>
-  <p>Todo polinômio não constante em \(\mathbb{C}\) tem raiz. Logo fatora-se como \(p(z)=c\,(z-\lambda_1)\cdots(z-\lambda_m)\). Em \(\mathbb{R}\), fatora em fatores lineares e quadráticos irredutíveis \(x^2+bx+c\) com \(b^2<4c\).</p></div>`,
+  body:R`<p>Um polinômio \(p\in\mathcal{P}(\mathbb{F})\) é \(p(z)=a_0+a_1z+\dots+a_mz^m\). Os coeficientes são <b>únicos</b>, o que dá sentido ao <b>grau</b> \(\deg p\) (com \(\deg 0=-\infty\)). Este capítulo não tem álgebra linear — reúne os fatos sobre polinômios usados adiante.</p>
+  <div class="callout thm"><div class="lbl">4.8 — Algoritmo da divisão</div>
+  <p>Dados \(p,s\in\mathcal{P}(\mathbb{F})\) com \(s\ne0\), existem <b>únicos</b> \(q,r\) com
+  \[p=sq+r,\qquad \deg r<\deg s.\]</p></div>
+  <div class="callout def"><div class="lbl">Definição 4.9 / 4.10 — Raiz e fator</div>
+  <p>\(\lambda\) é <b>raiz</b> de \(p\) se \(p(\lambda)=0\). Isso equivale (4.11) a \(z-\lambda\) ser <b>fator</b>: \(p(z)=(z-\lambda)q(z)\). Logo (4.12) um polinômio de grau \(m\) tem <b>no máximo \(m\) raízes distintas</b>.</p></div>
+  <div class="callout thm"><div class="lbl">4.13 / 4.14 — Teorema Fundamental da Álgebra</div>
+  <p>Todo polinômio não constante em \(\mathbb{C}\) tem raiz. Portanto fatora-se de modo único (a menos de ordem):
+  \[p(z)=c\,(z-\lambda_1)\cdots(z-\lambda_m),\qquad \lambda_j\in\mathbb{C}.\]</p></div>
+  <div class="callout thm"><div class="lbl">4.15 / 4.17 — Fatoração sobre \(\mathbb{R}\)</div>
+  <p>Raízes não reais de um polinômio com coeficientes reais vêm em <b>pares conjugados</b> \(\lambda,\bar\lambda\). Assim, sobre \(\mathbb{R}\), \(p\) fatora em fatores lineares e quadráticos irredutíveis:
+  \[p(x)=c\,(x-\lambda_1)\cdots(x-\lambda_m)(x^2+b_1x+c_1)\cdots(x^2+b_Mx+c_M),\quad b_j^2<4c_j.\]</p></div>
+  <p class="hint">Arraste a raiz \(\lambda\) (não real) — o conjugado \(\bar\lambda\) acompanha.</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-04roots" class="jxg-board"></div>
+      <figcaption>Plano complexo: para \(p\) real, se \(\lambda\) é raiz então \(\bar\lambda\) também é.</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 # p(x) = x^3 - 6x^2 + 11x - 6 = (x-1)(x-2)(x-3)
@@ -503,18 +515,39 @@ print("raízes:", np.round(raizes.real, 6))
 
 # Divisão de polinômios: p = s·q + r
 q, r = np.polydiv(p, np.array([1, -1.]))   # dividir por (x-1)
-print("quociente:", q, "| resto:", r)`}]},
+print("quociente:", q, "| resto:", r)`,
+  draw:function(JXG){
+    const b=JXG.JSXGraph.initBoard("jxg-04roots",{boundingbox:[-4,4,4,-4],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    b.create("text",[1.2,3.4,"eixo imaginário"],{fontSize:11,strokeColor:"#9fb0c0"});
+    b.create("text",[2.2,-0.5,"eixo real"],{fontSize:11,strokeColor:"#9fb0c0"});
+    const lam=b.create("point",[1.5,2],{name:"λ",size:4,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:16}});
+    const conj=b.create("point",[()=>lam.X(),()=>-lam.Y()],
+      {name:"λ̄",size:4,strokeColor:"#a3121b",fillColor:"#d3202a",label:{fontSize:16}});
+    b.create("segment",[lam,conj],{strokeColor:"#9fb0c0",strokeWidth:1,dash:2});
+    b.create("point",[-2,0],{name:"raiz real",size:3,strokeColor:"#b06a00",fillColor:"#f0a020",
+      fixed:true,label:{fontSize:12}});
+  }}]},
 
 /* ============================ CAPÍTULO 5 ============================ */
 {num:5,id:"cap05",title:"Eigenvalues, Eigenvectors, and Invariant Subspaces",titlePt:"Autovalores e Autovetores",pages:"131–179",dir:"cap05_eigenvalues",
  sections:[
  {code:"5A",id:"05A",nb:"05A_invariant_subspaces.ipynb",title:"Subespaços invariantes",en:"Invariant Subspaces",pages:"133–139",
   tags:["Invariante","Autovalor","Autovetor"],
-  body:R`<p>\(U\) é <b>invariante</b> sob \(T\in\mathcal{L}(V)\) se \(Tu\in U\) para todo \(u\in U\).</p>
-  <div class="callout def"><div class="lbl">Autovalor e autovetor</div>
-  <p>\(\lambda\in\mathbb{F}\) é autovalor se existe \(v\ne0\) com \(Tv=\lambda v\); \(v\) é autovetor. Equivale a \(T-\lambda I\) não injetiva.</p></div>
-  <div class="callout thm"><div class="lbl">Independência de autovetores</div>
-  <p>Autovetores associados a autovalores distintos são linearmente independentes. Logo \(T\) tem no máximo \(\dim V\) autovalores distintos.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 5.2 — Subespaço invariante</div>
+  <p>\(U\subseteq V\) é <b>invariante</b> sob \(T\in\mathcal{L}(V)\) se \(Tu\in U\) para todo \(u\in U\) (então \(T|_U\) é um operador em \(U\)). Sempre invariantes: \(\{0\}\), \(V\), \(\operatorname{null}T\) e \(\operatorname{range}T\).</p></div>
+  <div class="callout def"><div class="lbl">Definição 5.5 / 5.7 — Autovalor e autovetor</div>
+  <p>\(\lambda\in\mathbb{F}\) é <b>autovalor</b> de \(T\) se existe \(v\ne0\) com \(Tv=\lambda v\); tal \(v\) é <b>autovetor</b>. Autovetores de \(\lambda\) são exatamente os vetores não nulos de \(\operatorname{null}(T-\lambda I)\). Subespaços invariantes de dimensão 1 correspondem a autovetores.</p></div>
+  <div class="callout thm"><div class="lbl">5.6 — Condições equivalentes (dim finita)</div>
+  <p>São equivalentes: (a) \(\lambda\) é autovalor; (b) \(T-\lambda I\) não é injetiva; (c) não é sobrejetiva; (d) não é invertível.</p></div>
+  <div class="callout thm"><div class="lbl">5.10 / 5.13 — Independência dos autovetores</div>
+  <p>Autovetores associados a autovalores <b>distintos</b> são linearmente independentes. Logo \(T\) tem no máximo \(\dim V\) autovalores distintos.</p></div>
+  <p>Nem todo operador real tem autovalor: a rotação de \(90^\circ\) em \(\mathbb{R}^2\), \(T(w,z)=(-z,w)\), não leva nenhum vetor não nulo em múltiplo de si (mas sobre \(\mathbb{C}\) tem autovalores \(\pm i\)).</p>
+  <p class="hint">Arraste \(v\): quando \(Tv\) fica paralelo a \(v\), você achou um autovetor. Matriz \(T=\left[\begin{smallmatrix}2&1\\1&2\end{smallmatrix}\right]\).</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-5Aeig" class="jxg-board" style="height:340px"></div>
+      <figcaption>Autovetores: direções preservadas por \(T\) (aqui \(\lambda=3\) na direção \((1,1)\) e \(\lambda=1\) na direção \((1,-1)\)).</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 A = np.array([[2,0,0],[0,3,4],[0,4,9.]])
@@ -522,7 +555,26 @@ vals, vecs = np.linalg.eig(A)
 print("autovalores:", np.round(vals,4))
 for i,l in enumerate(vals):
     v = vecs[:,i]
-    print(f"Av = λv ? {np.allclose(A@v, l*v)}  (λ={l:.3f})")`},
+    print(f"Av = λv ? {np.allclose(A@v, l*v)}  (λ={l:.3f})")`,
+  draw:function(JXG){
+    const b=JXG.JSXGraph.initBoard("jxg-5Aeig",{boundingbox:[-5,5,5,-5],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    b.create("line",[[0,0],[1,1]],{strokeColor:"#9fb0c0",strokeWidth:1,dash:2});
+    b.create("line",[[0,0],[1,-1]],{strokeColor:"#9fb0c0",strokeWidth:1,dash:2});
+    const v=b.create("point",[2,1],{name:"v",size:4,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:15}});
+    const Tv=b.create("point",[()=>2*v.X()+v.Y(),()=>v.X()+2*v.Y()],
+      {name:"Tv",size:3,strokeColor:"#a3121b",fillColor:"#d3202a",label:{fontSize:15}});
+    b.create("arrow",[[0,0],v],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    b.create("arrow",[[0,0],Tv],{strokeColor:"#d3202a",strokeWidth:3,lastArrow:{size:7}});
+    b.create("text",[-4.7,4.4,()=>{
+      const x=v.X(),y=v.Y(), cross=x*x-y*y;
+      if(Math.abs(cross)<0.25 && (x*x+y*y)>0.1){
+        const lam=(x*(2*x+y)+y*(x+2*y))/(x*x+y*y);
+        return "autovetor!  Tv = "+lam.toFixed(1)+"·v";
+      }
+      return "Tv não é múltiplo de v";
+    }],{fontSize:14,strokeColor:"#0d1117",cssStyle:"font-weight:600"});
+  }},
  {code:"5B",id:"05B",nb:"05B_minimal_polynomial.ipynb",title:"Autovetores e matrizes triangulares",en:"Eigenvectors and Upper-Triangular Matrices",pages:"143–150",
   tags:["Polinômio de operador","Triangular","Existência de autovalor"],
   body:R`<p>Polinômios aplicados a operadores: \(p(T)=a_0I+a_1T+\dots+a_mT^m\). Vale \(p(T)q(T)=(pq)(T)\).</p>
