@@ -46,7 +46,7 @@
     const hero = el("section", "hero", `
       <span class="badge">IFAM · Estudo Interativo</span>
       <h1>Álgebra Linear com <span class="grad">Python</span></h1>
-      <p>Curso interativo baseado em <b>“Linear Algebra Done Right”</b> (Sheldon Axler, 4ª ed.).
+      <p>Curso interativo baseado em <b>“Linear Algebra Done Right”</b> (Sheldon Axler, 3ª ed.).
       Cada seção do livro traz teoria em LaTeX, teoremas e demonstrações executáveis em Python
       com NumPy, SciPy e SymPy.</p>
       <div class="cta">
@@ -146,7 +146,7 @@
     // abrir capítulo correspondente no menu
     document.querySelectorAll(".chap").forEach(c => c.classList.toggle("open", c.dataset.chap === s.chap.id));
     m.scrollTo?.(0, 0); window.scrollTo(0, 0);
-    highlight(); typeset(); updateActive();
+    highlight(); typeset(); updateActive(); drawDiagrams(s);
   }
 
   function codeBlock(title, code) {
@@ -188,6 +188,11 @@
   }
 
   /* ---------- libs externas ---------- */
+  function drawDiagrams(s) {
+    if (typeof s.draw !== "function" || !window.JXG) return;
+    // aguarda o layout do container antes de inicializar o board
+    requestAnimationFrame(() => { try { s.draw(JXG); } catch (e) { console.error("diagrama:", e); } });
+  }
   function highlight() { if (window.hljs) document.querySelectorAll("pre code").forEach(b => hljs.highlightElement(b)); }
   function typeset() { if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise(); }
 

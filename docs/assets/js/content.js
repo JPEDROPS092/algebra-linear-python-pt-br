@@ -1,4 +1,4 @@
-/* Conteúdo do curso — Álgebra Linear Feita Corretamente (Axler, 4ª ed.)
+/* Conteúdo do curso — Álgebra Linear Feita Corretamente (Axler, 3ª ed.)
    Cada seção mapeia um notebook do repositório. LaTeX via MathJax; código via highlight.js.
    String.raw preserva as barras invertidas do LaTeX. */
 const R = String.raw;
@@ -9,16 +9,41 @@ const CONTENT = [
  sections:[
  {code:"1A",id:"01A",nb:"01A_Rn_and_Cn.ipynb",title:"Rⁿ e Cⁿ",en:"Rⁿ and Cⁿ",pages:"2–10",
   tags:["Números complexos","Listas","Corpos"],
-  body:R`<p>A álgebra linear estuda estruturas construídas sobre um <b>corpo</b> \(\mathbb{F}\), que aqui será \(\mathbb{R}\) (reais) ou \(\mathbb{C}\) (complexos). Um número complexo tem a forma \(z = a + b\,i\), com \(a,b\in\mathbb{R}\) e \(i^2=-1\).</p>
-  <div class="callout def"><div class="lbl">Definição — \(\mathbb{F}^n\)</div>
-  <p>\(\mathbb{F}^n\) é o conjunto de todas as listas de comprimento \(n\) com entradas em \(\mathbb{F}\):
-  \[\mathbb{F}^n=\{(x_1,\dots,x_n): x_j\in\mathbb{F},\ j=1,\dots,n\}.\]</p></div>
-  <p>Soma e multiplicação por escalar são definidas coordenada a coordenada:
-  \[(x_1,\dots,x_n)+(y_1,\dots,y_n)=(x_1+y_1,\dots,x_n+y_n),\qquad \lambda(x_1,\dots,x_n)=(\lambda x_1,\dots,\lambda x_n).\]</p>
-  <div class="callout thm"><div class="lbl">Propriedade — Comutatividade</div>
-  <p>Para todos \(x,y\in\mathbb{F}^n\): \(x+y=y+x\). A soma herda a comutatividade da adição em \(\mathbb{F}\).</p></div>
-  <h2>Conjugado e módulo</h2>
-  <p>O conjugado de \(z=a+bi\) é \(\bar z=a-bi\); o módulo é \(|z|=\sqrt{a^2+b^2}=\sqrt{z\bar z}\).</p>`,
+  body:R`<p>A álgebra linear estuda aplicações lineares em espaços vetoriais de dimensão finita — e teoremas melhores surgem quando trabalhamos também com números complexos. Por isso começamos por eles.</p>
+  <h2>Números complexos</h2>
+  <div class="callout def"><div class="lbl">Definição 1.1 — Números complexos</div>
+  <p>Um <b>número complexo</b> é um par ordenado \((a,b)\), com \(a,b\in\mathbb{R}\), escrito \(a+bi\). O conjunto de todos eles é
+  \[\mathbb{C}=\{a+bi : a,b\in\mathbb{R}\}.\]
+  Adição e multiplicação em \(\mathbb{C}\):
+  \[(a+bi)+(c+di)=(a+c)+(b+d)i,\]
+  \[(a+bi)(c+di)=(ac-bd)+(ad+bc)i.\]</p></div>
+  <p>Identificando \(a\) com \(a+0i\), temos \(\mathbb{R}\subseteq\mathbb{C}\); e escrevendo \(i=0+1i\) obtém-se \(i^2=-1\). Não é preciso decorar a fórmula do produto: basta usar \(i^2=-1\) e a aritmética usual.</p>
+  <div class="callout thm"><div class="lbl">1.3 — Propriedades da aritmética complexa</div>
+  <p>Para todos \(\alpha,\beta,\lambda\in\mathbb{C}\): comutatividade \(\alpha+\beta=\beta+\alpha\), \(\alpha\beta=\beta\alpha\); associatividade da soma e do produto; identidades \(\lambda+0=\lambda\), \(\lambda 1=\lambda\); inverso aditivo \(-\alpha\) e, se \(\alpha\ne0\), inverso multiplicativo \(1/\alpha\); e distributividade \(\lambda(\alpha+\beta)=\lambda\alpha+\lambda\beta\).</p></div>
+  <h2>Corpos: \(\mathbb{R}\) ou \(\mathbb{C}\)</h2>
+  <div class="callout def"><div class="lbl">Notação 1.6 — \(\mathbb{F}\)</div>
+  <p>Ao longo do curso \(\mathbb{F}\) denota \(\mathbb{R}\) ou \(\mathbb{C}\) (ambos são <b>corpos</b>). Elementos de \(\mathbb{F}\) chamam-se <b>escalares</b>. Provar um resultado para \(\mathbb{F}\) o garante tanto no caso real quanto no complexo.</p></div>
+  <h2>Listas e \(\mathbb{F}^n\)</h2>
+  <div class="callout def"><div class="lbl">Definição 1.8 — Lista</div>
+  <p>Uma <b>lista</b> de comprimento \(n\) é \((x_1,\dots,x_n)\). Duas listas são iguais sse têm o mesmo comprimento e os mesmos elementos <b>na mesma ordem</b>. Ao contrário de conjuntos, em listas <b>a ordem importa e repetições contam</b>: \((3,5)\ne(5,3)\) e \((4,4)\ne(4,4,4)\).</p></div>
+  <div class="callout def"><div class="lbl">Definição 1.10 — \(\mathbb{F}^n\)</div>
+  <p>\(\mathbb{F}^n\) é o conjunto das listas de comprimento \(n\) com entradas em \(\mathbb{F}\):
+  \[\mathbb{F}^n=\{(x_1,\dots,x_n): x_j\in\mathbb{F},\ j=1,\dots,n\}.\]
+  \(x_j\) é a \(j\)-ésima <b>coordenada</b>. Assim \(\mathbb{R}^2\) é o plano e \(\mathbb{R}^3\) é o espaço usual.</p></div>
+  <p>As operações são definidas coordenada a coordenada — adição (1.12), vetor nulo (1.14), inverso aditivo (1.16) e multiplicação por escalar (1.17):
+  \[(x_1,\dots,x_n)+(y_1,\dots,y_n)=(x_1+y_1,\dots,x_n+y_n),\quad 0=(0,\dots,0),\]
+  \[-x=(-x_1,\dots,-x_n),\qquad \lambda(x_1,\dots,x_n)=(\lambda x_1,\dots,\lambda x_n).\]</p>
+  <div class="callout thm"><div class="lbl">1.13 — Comutatividade em \(\mathbb{F}^n\)</div>
+  <p>Para todos \(x,y\in\mathbb{F}^n\): \(x+y=y+x\). A soma herda a comutatividade coordenada a coordenada de \(\mathbb{F}\).</p></div>
+  <h2>Interpretação geométrica em \(\mathbb{R}^2\)</h2>
+  <p>Um elemento \(x=(x_1,x_2)\) pode ser visto como <b>ponto</b> ou como uma <b>seta</b> (vetor) da origem até \((x_1,x_2)\). A soma segue a <b>regra do triângulo</b>: transladamos \(y\) para a ponta de \(x\); a seta da origem à ponta de \(y\) é \(x+y\). Multiplicar por \(\lambda\) estica/encolhe (e inverte o sentido se \(\lambda<0\)).</p>
+  <p class="hint">Diagramas interativos — arraste os pontos e mova o slider.</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-1Asum" class="jxg-board"></div>
+      <figcaption>Soma \(x+y\): arraste \(x\) e \(y\) (regra do paralelogramo).</figcaption></figure>
+    <figure class="jfig"><div id="jxg-1Ascal" class="jxg-board"></div>
+      <figcaption>Escalar \(\lambda x\): mova o slider — \(\lambda<0\) inverte o sentido.</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 # Números complexos e F^n
@@ -32,16 +57,52 @@ print("soma coordenada a coordenada:", x + y)     # [5 7 9]
 print("multiplicação por escalar:", 2 * x)        # [2 4 6]
 
 # Comutatividade
-print("x+y == y+x ?", np.array_equal(x + y, y + x))`},
+print("x+y == y+x ?", np.array_equal(x + y, y + x))`,
+  draw:function(JXG){
+    const O=[0,0], opt={boundingbox:[-1,5,6,-1],axis:true,showNavigation:false,
+      showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}};
+    // --- Soma de vetores ---
+    const b=JXG.JSXGraph.initBoard("jxg-1Asum",opt);
+    const P=b.create("point",[3,1],{name:"x",size:3,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:15}});
+    const Q=b.create("point",[1,3],{name:"y",size:3,strokeColor:"#b06a00",fillColor:"#f0a020",label:{fontSize:15}});
+    b.create("arrow",[O,P],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    b.create("arrow",[O,Q],{strokeColor:"#f0a020",strokeWidth:3,lastArrow:{size:6}});
+    const S=b.create("point",[()=>P.X()+Q.X(),()=>P.Y()+Q.Y()],
+      {name:"x+y",size:2,strokeColor:"#a3121b",fillColor:"#d3202a",label:{fontSize:15}});
+    b.create("arrow",[O,S],{strokeColor:"#d3202a",strokeWidth:3,lastArrow:{size:7}});
+    b.create("segment",[P,S],{dash:2,strokeColor:"#f0a020",strokeWidth:1.3});
+    b.create("segment",[Q,S],{dash:2,strokeColor:"#2ea836",strokeWidth:1.3});
+    // --- Multiplicação por escalar ---
+    const b2=JXG.JSXGraph.initBoard("jxg-1Ascal",{boundingbox:[-4,4,4,-4],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    const lam=b2.create("slider",[[-3,-3.3],[3,-3.3],[-2,1.8,2]],{name:"λ",snapWidth:0.1,
+      fillColor:"#2ea836",strokeColor:"#1e7a26"});
+    const v=b2.create("point",[1.6,1],{name:"x",size:3,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:15}});
+    b2.create("arrow",[[0,0],v],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    const lv=b2.create("point",[()=>lam.Value()*v.X(),()=>lam.Value()*v.Y()],
+      {name:"λx",size:2,strokeColor:"#a3121b",fillColor:"#d3202a",label:{fontSize:15}});
+    b2.create("arrow",[[0,0],lv],{strokeColor:"#d3202a",strokeWidth:3,lastArrow:{size:7}});
+  }},
  {code:"1B",id:"01B",nb:"01B_definition_of_vector_space.ipynb",title:"Definição de espaço vetorial",en:"Definition of Vector Space",pages:"12–16",
   tags:["Axiomas","Vetor zero","Inverso aditivo"],
-  body:R`<p>Um espaço vetorial abstrai as propriedades de \(\mathbb{F}^n\). É um conjunto \(V\) com uma adição e uma multiplicação por escalar satisfazendo oito axiomas.</p>
-  <div class="callout def"><div class="lbl">Definição — Espaço vetorial</div>
-  <p>\(V\) sobre \(\mathbb{F}\) satisfaz: comutatividade, associatividade, existência de vetor nulo \(0\), inverso aditivo, identidade multiplicativa \(1v=v\), e distributividades:
-  \[a(u+v)=au+av,\qquad (a+b)v=av+bv.\]</p></div>
-  <div class="callout thm"><div class="lbl">Teorema — Unicidade do zero e do inverso</div>
-  <p>O vetor nulo é único, e cada \(v\in V\) possui um único inverso aditivo \(-v\). Além disso \(0v=0\) e \((-1)v=-v\).</p></div>
-  <p>Exemplos: \(\mathbb{F}^n\), o espaço \(\mathbb{F}^\infty\) de sequências, e \(\mathbb{F}^S\) das funções \(S\to\mathbb{F}\) — em particular os polinômios \(\mathcal{P}(\mathbb{F})\).</p>`,
+  body:R`<p>Um espaço vetorial abstrai as propriedades de \(\mathbb{F}^n\). A <b>adição</b> em um conjunto \(V\) associa a cada par \(u,v\in V\) um elemento \(u+v\in V\); a <b>multiplicação por escalar</b> associa a cada \(\lambda\in\mathbb{F}\) e \(v\in V\) um elemento \(\lambda v\in V\).</p>
+  <div class="callout def"><div class="lbl">Definição 1.19 — Espaço vetorial</div>
+  <p>\(V\) (com essa adição e multiplicação por escalar) é um <b>espaço vetorial sobre \(\mathbb{F}\)</b> se valem, para todos \(u,v,w\in V\) e \(a,b\in\mathbb{F}\):</p>
+  <ul>
+    <li><b>Comutatividade:</b> \(u+v=v+u\).</li>
+    <li><b>Associatividade:</b> \((u+v)+w=u+(v+w)\) e \((ab)v=a(bv)\).</li>
+    <li><b>Identidade aditiva:</b> existe \(0\in V\) com \(v+0=v\).</li>
+    <li><b>Inverso aditivo:</b> para cada \(v\) existe \(w\in V\) com \(v+w=0\).</li>
+    <li><b>Identidade multiplicativa:</b> \(1v=v\).</li>
+    <li><b>Distributividade:</b> \(a(u+v)=au+av\) e \((a+b)v=av+bv\).</li>
+  </ul></div>
+  <p>Elementos de \(V\) chamam-se <b>vetores</b> ou <b>pontos</b> (1.20). Um espaço sobre \(\mathbb{R}\) é <b>real</b>; sobre \(\mathbb{C}\), <b>complexo</b> (1.21).</p>
+  <div class="callout def"><div class="lbl">Exemplos</div>
+  <p>Além de \(\mathbb{F}^n\): o espaço \(\mathbb{F}^\infty\) das <b>sequências</b> \((x_1,x_2,\dots)\) com \(x_j\in\mathbb{F}\) (1.22); e \(\mathbb{F}^S\), o espaço das <b>funções</b> \(f:S\to\mathbb{F}\), com \((f+g)(x)=f(x)+g(x)\) e \((\lambda f)(x)=\lambda f(x)\) (1.23). Note que \(\mathbb{F}^n\) e \(\mathbb{F}^\infty\) são casos particulares de \(\mathbb{F}^S\). Os elementos de um espaço vetorial podem ser listas, sequências ou funções.</p></div>
+  <div class="callout thm"><div class="lbl">Propriedades básicas (1.25–1.31)</div>
+  <p>O vetor nulo é <b>único</b> (1.25) e cada \(v\) tem <b>único</b> inverso aditivo \(-v\) (1.26). Além disso, usando a distributividade:
+  \[0v=0\ (1.29),\qquad a0=0\ (1.30),\qquad (-1)v=-v\ (1.31).\]
+  Aqui \(0\) à esquerda de \(0v\) é o escalar; nos demais, o vetor nulo.</p></div>`,
   py:R`import numpy as np
 
 # Verificação numérica dos axiomas em R^3
@@ -58,12 +119,34 @@ assert np.allclose((-1)*v, -v)                   # (-1)v = -v
 print("Todos os axiomas verificados ✓")`},
  {code:"1C",id:"01C",nb:"01C_subspaces.ipynb",title:"Subespaços",en:"Subspaces",pages:"18–24",
   tags:["Subespaço","Soma de subespaços","Soma direta"],
-  body:R`<p>Um subconjunto \(U\subseteq V\) é um <b>subespaço</b> se é ele mesmo um espaço vetorial com as operações de \(V\).</p>
-  <div class="callout def"><div class="lbl">Critério de subespaço</div>
-  <p>\(U\subseteq V\) é subespaço \(\iff\) contém \(0\), é fechado sob soma e fechado sob multiplicação por escalar.</p></div>
-  <p>A <b>soma</b> de subespaços \(U_1+\dots+U_m=\{u_1+\dots+u_m: u_j\in U_j\}\) é o menor subespaço que contém todos eles.</p>
-  <div class="callout thm"><div class="lbl">Teorema — Soma direta</div>
-  <p>\(U_1+\dots+U_m\) é <b>soma direta</b> \(U_1\oplus\dots\oplus U_m\) sse cada elemento se escreve de modo único; equivalentemente, a única forma de escrever \(0\) é com todos os \(u_j=0\). Para dois subespaços: \(U\oplus W \iff U\cap W=\{0\}\).</p></div>`,
+  body:R`<p>Considerando subespaços, ampliamos muito nossos exemplos de espaços vetoriais.</p>
+  <div class="callout def"><div class="lbl">Definição 1.32 — Subespaço</div>
+  <p>\(U\subseteq V\) é um <b>subespaço</b> de \(V\) se \(U\) é ele mesmo um espaço vetorial com as operações de \(V\).</p></div>
+  <div class="callout thm"><div class="lbl">1.34 — Condições para subespaço</div>
+  <p>\(U\subseteq V\) é subespaço \(\iff\) satisfaz as três condições:</p>
+  <ul>
+    <li><b>Identidade aditiva:</b> \(0\in U\).</li>
+    <li><b>Fechado sob soma:</b> \(u,w\in U \implies u+w\in U\).</li>
+    <li><b>Fechado sob escalar:</b> \(a\in\mathbb{F},\,u\in U \implies au\in U\).</li>
+  </ul></div>
+  <p>Assim \(\{0\}\) é o menor subespaço e \(V\) o maior. Geometricamente, os subespaços de \(\mathbb{R}^2\) são exatamente \(\{0\}\), as <b>retas pela origem</b> e o próprio \(\mathbb{R}^2\); os de \(\mathbb{R}^3\) são \(\{0\}\), retas e <b>planos pela origem</b>, e \(\mathbb{R}^3\). (O conjunto vazio não é subespaço: falta o \(0\).)</p>
+  <h2>Somas de subespaços</h2>
+  <div class="callout def"><div class="lbl">Definição 1.36 — Soma</div>
+  <p>Para subespaços \(U_1,\dots,U_m\),
+  \[U_1+\dots+U_m=\{u_1+\dots+u_m: u_j\in U_j\}.\]
+  É o <b>menor</b> subespaço de \(V\) que contém todos os \(U_j\) (1.39) — análogo à união de conjuntos, mas a união em geral não é subespaço.</p></div>
+  <h2>Somas diretas</h2>
+  <div class="callout def"><div class="lbl">Definição 1.40 — Soma direta</div>
+  <p>A soma é <b>direta</b>, denotada \(U_1\oplus\dots\oplus U_m\), quando cada elemento se escreve de <b>modo único</b> como \(u_1+\dots+u_m\) com \(u_j\in U_j\).</p></div>
+  <div class="callout thm"><div class="lbl">1.44 / 1.45 — Critérios</div>
+  <p>A soma é direta \(\iff\) a única maneira de escrever \(0=u_1+\dots+u_m\) é com todos os \(u_j=0\) (1.44). Para <b>dois</b> subespaços há um teste simples:
+  \[U\oplus W \iff U\cap W=\{0\} \quad(1.45).\]
+  Atenção: para três ou mais, a interseção dois a dois ser \(\{0\}\) <b>não</b> basta.</p></div>
+  <p class="hint">Interativo: arraste \(v\), e as direções de \(U\) e \(W\). A decomposição \(v=u+w\) é sempre única.</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-1Cds" class="jxg-board" style="height:320px"></div>
+      <figcaption>\(\mathbb{R}^2=U\oplus W\): \(v\) se escreve de modo único como \(u\in U\) mais \(w\in W\).</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 # U = plano z=0 em R^3 ; W = eixo z. U ∩ W = {0}  ->  R^3 = U ⊕ W
@@ -78,22 +161,63 @@ W = [np.array([0,0,1.])]                        # eixo z
 alvo = np.array([2., -3., 5.])
 print("alvo pertence a U+W ?", in_span(U + W, alvo))   # True
 # Interseção trivial => soma direta
-print("U ∩ W = {0}: dim(U)+dim(W)=3 = dim(R^3) ✓")`}]},
+print("U ∩ W = {0}: dim(U)+dim(W)=3 = dim(R^3) ✓")`,
+  draw:function(JXG){
+    const b=JXG.JSXGraph.initBoard("jxg-1Cds",{boundingbox:[-5,5,5,-5],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    // direções (arrastáveis) das retas U e W pela origem
+    const du=b.create("point",[3,1],{name:"",size:2,strokeColor:"#2ea836",fillColor:"#2ea836"});
+    const dw=b.create("point",[-1,2],{name:"",size:2,strokeColor:"#f0a020",fillColor:"#f0a020"});
+    b.create("line",[[0,0],du],{strokeColor:"#2ea836",strokeWidth:1.4,name:"U",withLabel:true,
+      label:{position:"rt",fontSize:15,strokeColor:"#2ea836"}});
+    b.create("line",[[0,0],dw],{strokeColor:"#f0a020",strokeWidth:1.4,name:"W",withLabel:true,
+      label:{position:"lft",fontSize:15,strokeColor:"#b06a00"}});
+    const v=b.create("point",[2,3],{name:"v",size:4,strokeColor:"#a3121b",fillColor:"#d3202a",label:{fontSize:16}});
+    // resolve v = s·du + t·dw (coordenadas na base {du,dw})
+    const st=()=>{ const a=du.X(),c=du.Y(),e=dw.X(),f=dw.Y(),det=a*f-c*e;
+      if(Math.abs(det)<1e-9) return [0,0];
+      return [(v.X()*f-v.Y()*e)/det, (a*v.Y()-c*v.X())/det]; };
+    const uP=b.create("point",[()=>st()[0]*du.X(),()=>st()[0]*du.Y()],{visible:false});
+    const wP=b.create("point",[()=>st()[1]*dw.X(),()=>st()[1]*dw.Y()],{visible:false});
+    b.create("arrow",[[0,0],uP],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    b.create("arrow",[[0,0],wP],{strokeColor:"#f0a020",strokeWidth:3,lastArrow:{size:6}});
+    b.create("arrow",[[0,0],v],{strokeColor:"#d3202a",strokeWidth:2,lastArrow:{size:6}});
+    b.create("segment",[uP,v],{dash:2,strokeColor:"#f0a020",strokeWidth:1.3});
+    b.create("segment",[wP,v],{dash:2,strokeColor:"#2ea836",strokeWidth:1.3});
+    b.create("text",[0.15,-0.5,"u"],{fontSize:14,strokeColor:"#1e7a26"});
+    b.create("text",[-0.7,0.4,"w"],{fontSize:14,strokeColor:"#b06a00"});
+  }}]},
 
 /* ============================ CAPÍTULO 2 ============================ */
 {num:2,id:"cap02",title:"Finite-Dimensional Vector Spaces",titlePt:"Espaços de Dimensão Finita",pages:"27–48",dir:"cap02_finite_dimensional",
  sections:[
  {code:"2A",id:"02A",nb:"02A_span_and_linear_independence.ipynb",title:"Geradores e independência linear",en:"Span and Linear Independence",pages:"28–37",
   tags:["Span","Combinação linear","Independência"],
-  body:R`<p>Uma <b>combinação linear</b> de \(v_1,\dots,v_m\) é \(a_1v_1+\dots+a_mv_m\). O <b>span</b> é o conjunto de todas elas — o menor subespaço contendo esses vetores.</p>
-  <div class="callout def"><div class="lbl">Independência linear</div>
-  <p>\(v_1,\dots,v_m\) são linearmente independentes se
+  body:R`<h2>Combinações lineares e span</h2>
+  <div class="callout def"><div class="lbl">Definição 2.3 / 2.5 — Combinação linear e span</div>
+  <p>Uma <b>combinação linear</b> de \(v_1,\dots,v_m\) é um vetor \(a_1v_1+\dots+a_mv_m\), com \(a_j\in\mathbb{F}\). O <b>span</b> é o conjunto de todas elas:
+  \[\operatorname{span}(v_1,\dots,v_m)=\{a_1v_1+\dots+a_mv_m: a_j\in\mathbb{F}\}.\]
+  Convenciona-se \(\operatorname{span}()=\{0\}\).</p></div>
+  <div class="callout thm"><div class="lbl">2.7 — Span é o menor subespaço</div>
+  <p>\(\operatorname{span}(v_1,\dots,v_m)\) é o menor subespaço de \(V\) que contém \(v_1,\dots,v_m\). Se ele é igual a \(V\), dizemos que a lista <b>gera</b> \(V\) (2.8).</p></div>
+  <div class="callout def"><div class="lbl">Definição 2.10 — Dimensão finita</div>
+  <p>\(V\) tem <b>dimensão finita</b> se <em>alguma</em> lista de vetores o gera. Caso contrário é de <b>dimensão infinita</b> (2.15). Ex.: \(\mathbb{F}^n\) tem dimensão finita; o espaço dos polinômios \(\mathcal{P}(\mathbb{F})\) é de dimensão infinita (2.16), pois qualquer lista tem grau máximo limitado. Já \(\mathcal{P}_m(\mathbb{F})=\operatorname{span}(1,z,\dots,z^m)\) tem dimensão finita.</p></div>
+  <h2>Independência linear</h2>
+  <div class="callout def"><div class="lbl">Definição 2.17 / 2.19</div>
+  <p>\(v_1,\dots,v_m\) é <b>linearmente independente</b> se
   \[a_1v_1+\dots+a_mv_m=0 \implies a_1=\dots=a_m=0.\]
-  Caso contrário, são linearmente dependentes.</p></div>
-  <div class="callout thm"><div class="lbl">Lema da dependência linear</div>
-  <p>Num sistema dependente existe \(v_j\) no span dos anteriores; removê-lo não altera o span.</p></div>
-  <div class="callout thm"><div class="lbl">Teorema fundamental da contagem</div>
-  <p>O comprimento de qualquer lista linearmente independente \(\le\) comprimento de qualquer lista geradora.</p></div>`,
+  Caso contrário é <b>linearmente dependente</b> (existe combinação nula com algum \(a_j\ne0\)). Equivale a dizer que cada vetor do span tem representação <b>única</b>. Toda lista que contém o vetor \(0\) é dependente.</p></div>
+  <div class="callout thm"><div class="lbl">2.21 — Lema da dependência linear</div>
+  <p>Se \(v_1,\dots,v_m\) é dependente, existe \(j\) com \(v_j\in\operatorname{span}(v_1,\dots,v_{j-1})\); removendo esse \(v_j\), o span não muda.</p></div>
+  <div class="callout thm"><div class="lbl">2.23 — Independente \(\le\) gerador</div>
+  <p>Em dimensão finita, o comprimento de <b>qualquer</b> lista linearmente independente é \(\le\) comprimento de <b>qualquer</b> lista geradora. (Daí: todo subespaço de um espaço de dimensão finita também tem dimensão finita — 2.26.)</p></div>
+  <h2>Visualizando em \(\mathbb{R}^2\)</h2>
+  <p>Duas setas \(v_1,v_2\) são independentes exatamente quando o paralelogramo que elas geram tem <b>área não nula</b> — isto é, \(\det[v_1\ v_2]\ne0\). Se a área colapsa (vetores colineares), a lista é dependente e o span é apenas uma reta.</p>
+  <p class="hint">Arraste as pontas de \(v_1\) e \(v_2\).</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-2Aspan" class="jxg-board" style="height:320px"></div>
+      <figcaption>Área do paralelogramo \(=|\det|\): \(\ne0\Rightarrow\) independentes (span \(=\mathbb{R}^2\)); \(=0\Rightarrow\) dependentes.</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 V = np.array([[1,0,1],
@@ -102,14 +226,43 @@ V = np.array([[1,0,1],
 r = np.linalg.matrix_rank(V)
 print("posto:", r, "| nº de vetores:", V.shape[1])
 print("dependentes" if r < V.shape[1] else "independentes")
-# terceiro = soma dos dois primeiros -> dependência linear`},
+# terceiro = soma dos dois primeiros -> dependência linear`,
+  draw:function(JXG){
+    const b=JXG.JSXGraph.initBoard("jxg-2Aspan",{boundingbox:[-5,5,5,-5],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    const P1=b.create("point",[3,1],{name:"v₁",size:3,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:15}});
+    const P2=b.create("point",[1,2.5],{name:"v₂",size:3,strokeColor:"#b06a00",fillColor:"#f0a020",label:{fontSize:15}});
+    const det=()=>P1.X()*P2.Y()-P1.Y()*P2.X();
+    // paralelogramo O, v1, v1+v2, v2
+    b.create("polygon",[[0,0],P1,[()=>P1.X()+P2.X(),()=>P1.Y()+P2.Y()],P2],
+      {fillColor:"#2ea836",fillOpacity:0.16,borders:{strokeWidth:0},vertices:{visible:false}});
+    // reta do span quando dependentes
+    const L=b.create("line",[[0,0],P1],{strokeColor:"#d3202a",strokeWidth:1.4,dash:2,
+      visible:()=>Math.abs(det())<0.15});
+    b.create("arrow",[[0,0],P1],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    b.create("arrow",[[0,0],P2],{strokeColor:"#f0a020",strokeWidth:3,lastArrow:{size:6}});
+    b.create("text",[-4.7,4.4,()=>{
+      const d=det();
+      return Math.abs(d)<0.15 ? "dependentes · span = reta" : "independentes · área = "+Math.abs(d).toFixed(2);
+    }],{fontSize:14,strokeColor:"#0d1117",cssStyle:"font-weight:600"});
+  }},
  {code:"2B",id:"02B",nb:"02B_bases.ipynb",title:"Bases",en:"Bases",pages:"39–42",
   tags:["Base","Coordenadas"],
-  body:R`<p>Uma <b>base</b> de \(V\) é uma lista linearmente independente que gera \(V\).</p>
-  <div class="callout thm"><div class="lbl">Critério de base</div>
-  <p>\(v_1,\dots,v_n\) é base \(\iff\) todo \(v\in V\) se escreve de forma <b>única</b> como \(v=a_1v_1+\dots+a_nv_n\).</p></div>
-  <div class="callout thm"><div class="lbl">Teoremas de extensão e redução</div>
-  <p>Toda lista geradora pode ser reduzida a uma base; toda lista independente pode ser estendida a uma base. Logo todo espaço de dimensão finita possui base.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 2.27 — Base</div>
+  <p>Uma <b>base</b> de \(V\) é uma lista de vetores que é <b>linearmente independente</b> e <b>gera</b> \(V\).</p></div>
+  <p>Exemplo: a <b>base canônica</b> de \(\mathbb{F}^n\) é \((1,0,\dots,0),(0,1,0,\dots,0),\dots,(0,\dots,0,1)\). Um espaço tem muitas bases: \((7,5),(-4,9)\) e \((1,2),(3,5)\) são ambas bases de \(\mathbb{F}^2\). E \(1,z,\dots,z^m\) é base de \(\mathcal{P}_m(\mathbb{F})\).</p>
+  <div class="callout thm"><div class="lbl">2.29 — Critério de base</div>
+  <p>\(v_1,\dots,v_n\) é base de \(V\) \(\iff\) todo \(v\in V\) se escreve de forma <b>única</b> como
+  \[v=a_1v_1+\dots+a_nv_n,\qquad a_j\in\mathbb{F}.\]
+  Esses escalares são as <b>coordenadas</b> de \(v\) na base.</p></div>
+  <div class="callout thm"><div class="lbl">2.31 / 2.32 / 2.33 — Redução, existência e extensão</div>
+  <ul>
+    <li>Toda lista <b>geradora</b> pode ser <b>reduzida</b> a uma base (descartando vetores redundantes).</li>
+    <li>Logo <b>todo espaço de dimensão finita possui base</b>.</li>
+    <li>Toda lista <b>independente</b> pode ser <b>estendida</b> a uma base.</li>
+  </ul></div>
+  <div class="callout thm"><div class="lbl">2.34 — Todo subespaço é somando direto de \(V\)</div>
+  <p>Se \(V\) tem dimensão finita e \(U\subseteq V\) é subespaço, então existe subespaço \(W\) com \(V=U\oplus W\). (Estende-se uma base de \(U\) a uma base de \(V\); \(W\) é o span dos vetores acrescentados.)</p></div>`,
   py:R`import numpy as np
 
 # Base canônica de R^3 e coordenadas de um vetor
@@ -125,10 +278,17 @@ print("coordenadas na base B2:", coords2)
 print("reconstrução:", B2 @ coords2)`},
  {code:"2C",id:"02C",nb:"02C_dimension.ipynb",title:"Dimensão",en:"Dimension",pages:"44–48",
   tags:["Dimensão","dim(U+W)"],
-  body:R`<p>A <b>dimensão</b> \(\dim V\) é o comprimento de qualquer base — bem definida, pois todas têm o mesmo tamanho.</p>
-  <div class="callout thm"><div class="lbl">Fórmula da dimensão da soma</div>
-  <p>\[\dim(U+W)=\dim U+\dim W-\dim(U\cap W).\]</p></div>
-  <p>Consequências: se \(\dim V=n\), toda lista independente de \(n\) vetores é base, e toda lista geradora de \(n\) vetores é base.</p>`,
+  body:R`<div class="callout thm"><div class="lbl">2.35 — O comprimento da base é invariante</div>
+  <p>Quaisquer duas bases de um espaço de dimensão finita têm o <b>mesmo comprimento</b>. (Decorre de 2.23, comparando independente vs. gerador nos dois sentidos.)</p></div>
+  <div class="callout def"><div class="lbl">Definição 2.36 — Dimensão</div>
+  <p>\(\dim V\) é o comprimento de qualquer base de \(V\). Ex.: \(\dim\mathbb{F}^n=n\); \(\dim\mathcal{P}_m(\mathbb{F})=m+1\). A dimensão depende do corpo: \(\mathbb{C}\) tem dimensão \(1\) sobre \(\mathbb{C}\), mas \(2\) sobre \(\mathbb{R}\).</p></div>
+  <div class="callout thm"><div class="lbl">2.38 — Dimensão de subespaço</div>
+  <p>Se \(U\subseteq V\) e \(V\) tem dimensão finita, então \(\dim U\le\dim V\).</p></div>
+  <div class="callout thm"><div class="lbl">2.39 / 2.42 — O comprimento certo basta</div>
+  <p>Se \(\dim V=n\), então: toda lista <b>independente</b> de \(n\) vetores é base; e toda lista <b>geradora</b> de \(n\) vetores é base. Ou seja, sabendo a dimensão, basta verificar <em>uma</em> das duas propriedades.</p></div>
+  <div class="callout thm"><div class="lbl">2.43 — Dimensão da soma</div>
+  <p>\[\dim(U_1+U_2)=\dim U_1+\dim U_2-\dim(U_1\cap U_2).\]
+  Análogo à contagem de elementos da união de conjuntos finitos. Em particular, a soma é <b>direta</b> \(\iff \dim(U_1+U_2)=\dim U_1+\dim U_2\).</p></div>`,
   py:R`import numpy as np
 from numpy.linalg import matrix_rank as rank
 
@@ -145,11 +305,18 @@ print(f"dim U={dimU}, dim W={dimW}, dim(U+W)={dimUW}, dim(U∩W)={dimInt}")`}]},
  sections:[
  {code:"3A",id:"03A",nb:"03A_vector_space_of_linear_maps.ipynb",title:"Espaço das aplicações lineares",en:"The Vector Space of Linear Maps",pages:"52–57",
   tags:["Linearidade","L(V,W)","Composição"],
-  body:R`<p>Uma aplicação \(T:V\to W\) é <b>linear</b> se \(T(u+v)=Tu+Tv\) e \(T(\lambda v)=\lambda Tv\).</p>
-  <div class="callout def"><div class="lbl">\(\mathcal{L}(V,W)\)</div>
-  <p>O conjunto das aplicações lineares de \(V\) em \(W\) é ele mesmo um espaço vetorial com soma \((S+T)v=Sv+Tv\) e escalar \((\lambda T)v=\lambda(Tv)\).</p></div>
-  <div class="callout thm"><div class="lbl">Lema — determinação por uma base</div>
-  <p>Dada base \(v_1,\dots,v_n\) de \(V\) e vetores \(w_1,\dots,w_n\in W\), existe uma única \(T\in\mathcal{L}(V,W)\) com \(Tv_j=w_j\).</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 3.1 — Aplicação linear</div>
+  <p>\(T:V\to W\) é <b>linear</b> se, para todos \(u,v\in V\) e \(\lambda\in\mathbb{F}\):
+  \[T(u+v)=Tu+Tv \quad\text{(aditividade)},\qquad T(\lambda v)=\lambda\,Tv \quad\text{(homogeneidade)}.\]
+  Escreve-se \(Tv\) em vez de \(T(v)\). Cuidado: nem toda função "parecida" é linear — \(\cos\) não é, pois \(\cos 2x\ne 2\cos x\).</p></div>
+  <p>Exemplos: a aplicação nula, a identidade, a <b>derivação</b> \(Dp=p'\) em \(\mathcal{P}(\mathbb{R})\), a <b>integração</b> \(p\mapsto\int_0^1 p\), o <b>deslocamento</b> \((x_1,x_2,\dots)\mapsto(x_2,x_3,\dots)\), e toda \(T:\mathbb{F}^n\to\mathbb{F}^m\) dada por combinações lineares das coordenadas.</p>
+  <div class="callout thm"><div class="lbl">3.5 — Uma base do domínio determina \(T\)</div>
+  <p>Dada uma base \(v_1,\dots,v_n\) de \(V\) e vetores quaisquer \(w_1,\dots,w_n\in W\), existe uma <b>única</b> \(T\in\mathcal{L}(V,W)\) com \(Tv_j=w_j\). Ou seja, uma aplicação linear fica totalmente determinada pelos valores numa base.</p></div>
+  <div class="callout def"><div class="lbl">3.6 / 3.7 — O espaço \(\mathcal{L}(V,W)\)</div>
+  <p>Com \((S+T)v=Sv+Tv\) e \((\lambda T)v=\lambda(Tv)\), o conjunto \(\mathcal{L}(V,W)\) das aplicações lineares é ele mesmo um <b>espaço vetorial</b>.</p></div>
+  <div class="callout def"><div class="lbl">3.8 / 3.9 — Produto (composição)</div>
+  <p>Para \(T\in\mathcal{L}(U,V)\) e \(S\in\mathcal{L}(V,W)\), o <b>produto</b> \(ST\in\mathcal{L}(U,W)\) é a composição \((ST)u=S(Tu)\). É associativo e distributivo, mas <b>não comutativo</b>: em geral \(ST\ne TS\).</p></div>
+  <p>Toda aplicação linear leva \(0\) em \(0\): \(T(0)=0\) (3.11).</p>`,
   py:R`import numpy as np
 
 # T: R^2 -> R^2 rotação de 90°.  Testando linearidade.
@@ -164,13 +331,20 @@ S = np.array([[2,0],[0,3.]])
 print("matriz de S∘T:\n", S @ T)`},
  {code:"3B",id:"03B",nb:"03B_null_spaces_and_ranges.ipynb",title:"Núcleo e imagem",en:"Null Spaces and Ranges",pages:"59–66",
   tags:["Núcleo","Imagem","Teorema do posto-nulidade"],
-  body:R`<p>O <b>núcleo</b> \(\operatorname{null}T=\{v: Tv=0\}\) e a <b>imagem</b> \(\operatorname{range}T=\{Tv: v\in V\}\) são subespaços.</p>
-  <div class="callout thm"><div class="lbl">Teorema Fundamental das Aplicações Lineares</div>
-  <p>Se \(V\) tem dimensão finita e \(T\in\mathcal{L}(V,W)\):
+  body:R`<div class="callout def"><div class="lbl">Definição 3.12 / 3.17 — Núcleo e imagem</div>
+  <p>O <b>núcleo</b> (kernel) e a <b>imagem</b> (range) de \(T\in\mathcal{L}(V,W)\):
+  \[\operatorname{null}T=\{v\in V: Tv=0\},\qquad \operatorname{range}T=\{Tv: v\in V\}.\]
+  \(\operatorname{null}T\) é subespaço de \(V\) (3.14) e \(\operatorname{range}T\) é subespaço de \(W\) (3.19).</p></div>
+  <div class="callout thm"><div class="lbl">3.16 / 3.20 — Injetividade e sobrejetividade</div>
+  <p>\(T\) é <b>injetiva</b> \(\iff \operatorname{null}T=\{0\}\) (o único vetor levado a \(0\) é o \(0\)). \(T\) é <b>sobrejetiva</b> \(\iff \operatorname{range}T=W\).</p></div>
+  <div class="callout thm"><div class="lbl">3.22 — Teorema Fundamental das Aplicações Lineares</div>
+  <p>Se \(V\) tem dimensão finita e \(T\in\mathcal{L}(V,W)\), então \(\operatorname{range}T\) tem dimensão finita e
   \[\dim V=\dim\operatorname{null}T+\dim\operatorname{range}T.\]</p></div>
-  <ul><li>\(T\) injetiva \(\iff \operatorname{null}T=\{0\}\).</li>
-  <li>Se \(\dim V>\dim W\), nenhuma \(T\) é injetiva.</li>
-  <li>Se \(\dim V<\dim W\), nenhuma \(T\) é sobrejetiva.</li></ul>`,
+  <p>Consequências imediatas (3.23 / 3.24), úteis para sistemas lineares:</p>
+  <ul>
+    <li>Se \(\dim V>\dim W\), <b>nenhuma</b> \(T\) é injetiva. (Sistema homogêneo com mais variáveis que equações tem solução não trivial — 3.26.)</li>
+    <li>Se \(\dim V<\dim W\), <b>nenhuma</b> \(T\) é sobrejetiva. (Sistema com mais equações que variáveis pode não ter solução — 3.29.)</li>
+  </ul>`,
   py:R`import numpy as np
 from scipy.linalg import null_space
 
@@ -185,10 +359,20 @@ print("dim(núcleo) =", dim_null, "| dim(imagem) =", dim_range)
 print("soma =", dim_null + dim_range, "= dim V =", n, "✓")`},
  {code:"3C",id:"03C",nb:"03C_matrices.ipynb",title:"Matrizes",en:"Matrices",pages:"69–79",
   tags:["Matriz de T","Produto matricial"],
-  body:R`<p>Fixadas bases, cada \(T\in\mathcal{L}(V,W)\) tem uma <b>matriz</b> \(\mathcal{M}(T)\): a \(j\)-ésima coluna são as coordenadas de \(Tv_j\).</p>
-  <div class="callout def"><div class="lbl">Produto de matrizes</div>
-  <p>\((AC)_{ij}=\sum_{k}A_{ik}C_{kj}\). Foi definido exatamente para que \(\mathcal{M}(ST)=\mathcal{M}(S)\,\mathcal{M}(T)\).</p></div>
-  <p>A adição de aplicações corresponde à soma de matrizes, e a composição corresponde ao produto — dando isomorfismo \(\mathcal{L}(V,W)\cong \mathbb{F}^{m\times n}\).</p>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 3.32 — Matriz de \(T\)</div>
+  <p>Fixadas bases \(v_1,\dots,v_n\) de \(V\) e \(w_1,\dots,w_m\) de \(W\), a matriz \(\mathcal{M}(T)\) tem entradas \(A_{j,k}\) definidas por
+  \[Tv_k=A_{1,k}w_1+\dots+A_{m,k}w_m.\]
+  Em palavras: a \(k\)-ésima <b>coluna</b> de \(\mathcal{M}(T)\) são as coordenadas de \(Tv_k\). Nas bases canônicas, a coluna \(k\) é simplesmente \(Te_k\).</p></div>
+  <div class="callout def"><div class="lbl">Definição 3.41 — Produto de matrizes</div>
+  <p>\((AC)_{j,k}=\sum_{r}A_{j,r}\,C_{r,k}\). Essa definição foi escolhida <em>exatamente</em> para que \(\mathcal{M}(ST)=\mathcal{M}(S)\,\mathcal{M}(T)\) (3.43). Colunas: \((AC)_{\cdot,k}=A\,C_{\cdot,k}\) (3.49); e \(Ac\) é combinação linear das colunas de \(A\) (3.52).</p></div>
+  <p>Soma de aplicações ↔ soma de matrizes (3.36); escalar ↔ escalar (3.38). O espaço \(\mathbb{F}^{m,n}\) tem dimensão \(mn\) (3.40), e \(\mathcal{L}(V,W)\cong\mathbb{F}^{m,n}\).</p>
+  <h2>Uma aplicação linear transforma o plano</h2>
+  <p>Como as colunas de \(\mathcal{M}(T)\) são \(Te_1\) e \(Te_2\), a matriz fica <b>completamente determinada</b> pelas imagens dos vetores da base. O quadrado unitário vira o paralelogramo gerado por \(Te_1,Te_2\), e \(|\det|\) é o fator de escala das áreas — se \(\det=0\), o plano colapsa numa reta (não invertível).</p>
+  <p class="hint">Arraste \(Te_1\) e \(Te_2\) para montar a matriz e ver a transformação.</p>
+  <div class="jxg-wrap">
+    <figure class="jfig"><div id="jxg-3Cmap" class="jxg-board" style="height:340px"></div>
+      <figcaption>Colunas \(Te_1,Te_2\) definem \(T\); a malha cinza (grade original) vira a malha colorida.</figcaption></figure>
+  </div>`,
   py:R`import numpy as np
 
 # M(ST) = M(S) M(T)
@@ -199,12 +383,49 @@ print("M(S)M(T):\n", S @ T)
 # Coluna j da matriz = imagem do j-ésimo vetor da base
 e1, e2 = np.array([1.,0]), np.array([0.,1])
 print("T e1:", T@e1, " (1ª coluna)")
-print("T e2:", T@e2, " (2ª coluna)")`},
+print("T e2:", T@e2, " (2ª coluna)")`,
+  draw:function(JXG){
+    const b=JXG.JSXGraph.initBoard("jxg-3Cmap",{boundingbox:[-5,5,5,-5],axis:true,
+      showNavigation:false,showCopyright:false,keepAspectRatio:true,pan:{enabled:false},zoom:{wheel:false}});
+    const O=[0,0], N=3;
+    // quadrado unitário de referência (grade original)
+    b.create("polygon",[[0,0],[1,0],[1,1],[0,1]],{fillColor:"#9fb0c0",fillOpacity:0.12,
+      borders:{strokeColor:"#9fb0c0",strokeWidth:1,dash:2},vertices:{visible:false},fixed:true});
+    const E1=b.create("point",[2,0.4],{name:"Te₁",size:3,strokeColor:"#1e7a26",fillColor:"#2ea836",label:{fontSize:15}});
+    const E2=b.create("point",[-0.4,2],{name:"Te₂",size:3,strokeColor:"#b06a00",fillColor:"#f0a020",label:{fontSize:15}});
+    // malha transformada (imagem do reticulado inteiro)
+    for(let i=-N;i<=N;i++){
+      b.create("segment",[[()=>i*E1.X()-N*E2.X(),()=>i*E1.Y()-N*E2.Y()],
+                          [()=>i*E1.X()+N*E2.X(),()=>i*E1.Y()+N*E2.Y()]],
+        {strokeColor:"#2ea836",strokeWidth:1,strokeOpacity:0.35});
+      b.create("segment",[[()=>i*E2.X()-N*E1.X(),()=>i*E2.Y()-N*E1.Y()],
+                          [()=>i*E2.X()+N*E1.X(),()=>i*E2.Y()+N*E1.Y()]],
+        {strokeColor:"#f0a020",strokeWidth:1,strokeOpacity:0.35});
+    }
+    // imagem do quadrado unitário
+    b.create("polygon",[O,E1,[()=>E1.X()+E2.X(),()=>E1.Y()+E2.Y()],E2],
+      {fillColor:"#2ea836",fillOpacity:0.18,borders:{strokeColor:"#2ea836",strokeWidth:1.5},vertices:{visible:false}});
+    b.create("arrow",[O,E1],{strokeColor:"#2ea836",strokeWidth:3,lastArrow:{size:6}});
+    b.create("arrow",[O,E2],{strokeColor:"#f0a020",strokeWidth:3,lastArrow:{size:6}});
+    b.create("text",[-4.7,4.4,()=>{
+      const d=E1.X()*E2.Y()-E1.Y()*E2.X();
+      return Math.abs(d)<0.08 ? "det ≈ 0 · não invertível (colapsa em reta)" : "det = "+d.toFixed(2)+" (escala de área)";
+    }],{fontSize:14,strokeColor:"#0d1117",cssStyle:"font-weight:600"});
+  }},
  {code:"3D",id:"03D",nb:"03D_invertibility_and_isomorphisms.ipynb",title:"Invertibilidade e isomorfismos",en:"Invertibility and Isomorphisms",pages:"82–93",
   tags:["Invertível","Isomorfismo","Operador"],
-  body:R`<p>\(T\) é <b>invertível</b> se existe \(S\) com \(ST=I\) e \(TS=I\). Um isomorfismo é uma aplicação linear invertível; \(V\cong W\) sse existe isomorfismo entre eles.</p>
-  <div class="callout thm"><div class="lbl">Teorema</div>
-  <p>Espaços de dimensão finita são isomorfos \(\iff\) têm a mesma dimensão. Para um <b>operador</b> \(T\in\mathcal{L}(V)\) com \(\dim V<\infty\): injetivo \(\iff\) sobrejetivo \(\iff\) invertível.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 3.53 — Invertível e inversa</div>
+  <p>\(T\in\mathcal{L}(V,W)\) é <b>invertível</b> se existe \(S\in\mathcal{L}(W,V)\) com \(ST=I\) e \(TS=I\). A inversa é <b>única</b> (3.54) e denota-se \(T^{-1}\).</p></div>
+  <div class="callout thm"><div class="lbl">3.56 — Caracterização</div>
+  <p>\(T\) é invertível \(\iff\) é <b>injetiva e sobrejetiva</b>.</p></div>
+  <div class="callout def"><div class="lbl">Definição 3.58 — Isomorfismo</div>
+  <p>Um <b>isomorfismo</b> é uma aplicação linear invertível. \(V\) e \(W\) são <b>isomorfos</b> (\(V\cong W\)) se existe um isomorfismo entre eles — pense nele como um "renomear" os vetores.</p></div>
+  <div class="callout thm"><div class="lbl">3.59 / 3.60 / 3.61 — Dimensão e isomorfismo</div>
+  <p>Espaços de dimensão finita sobre \(\mathbb{F}\) são isomorfos \(\iff\) têm a <b>mesma dimensão</b>. Em particular \(\mathcal{L}(V,W)\cong\mathbb{F}^{m,n}\) via \(\mathcal{M}\), e \(\dim\mathcal{L}(V,W)=(\dim V)(\dim W)\). Fixada uma base, \(\mathcal{M}(Tv)=\mathcal{M}(T)\,\mathcal{M}(v)\) (3.65): aplicar \(T\) vira multiplicar pela matriz.</p></div>
+  <div class="callout thm"><div class="lbl">3.67 / 3.69 — Operadores</div>
+  <p>Um <b>operador</b> é uma aplicação linear de \(V\) em si mesmo (\(\mathcal{L}(V)\)). Se \(\dim V<\infty\), então para \(T\in\mathcal{L}(V)\):
+  \[T\ \text{injetivo}\iff T\ \text{sobrejetivo}\iff T\ \text{invertível}.\]
+  (Em dimensão infinita isso falha: o deslocamento é sobrejetivo mas não injetivo.)</p></div>`,
   py:R`import numpy as np
 
 A = np.array([[2,1],[1,1.]])
@@ -216,10 +437,15 @@ print("A·A⁻¹ = I ?", np.allclose(A @ Ainv, np.eye(2)))
 print("posto =", np.linalg.matrix_rank(A), "= dim => bijetivo")`},
  {code:"3E",id:"03E",nb:"03E_products_and_quotients.ipynb",title:"Produtos e quocientes",en:"Products and Quotients",pages:"96–103",
   tags:["Produto","Espaço quociente","Coset"],
-  body:R`<p>O <b>produto</b> \(V_1\times\dots\times V_m\) tem operações coordenada a coordenada e \(\dim=\sum\dim V_j\).</p>
-  <div class="callout def"><div class="lbl">Espaço quociente</div>
-  <p>Para subespaço \(U\subseteq V\), o coset \(v+U=\{v+u:u\in U\}\). O quociente \(V/U\) é o conjunto dos cosets, com
-  \[\dim(V/U)=\dim V-\dim U.\]</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 3.71 — Produto de espaços</div>
+  <p>\(V_1\times\dots\times V_m\) é o conjunto das listas \((v_1,\dots,v_m)\), \(v_j\in V_j\), com operações coordenada a coordenada. É espaço vetorial e
+  \[\dim(V_1\times\dots\times V_m)=\dim V_1+\dots+\dim V_m\quad(3.76).\]</p></div>
+  <div class="callout def"><div class="lbl">Definição 3.79 / 3.81 — Coset e espaço quociente</div>
+  <p>Para um subespaço \(U\subseteq V\), o <b>coset</b> (subconjunto afim) é \(v+U=\{v+u:u\in U\}\). O <b>quociente</b> \(V/U\) é o conjunto de todos os cosets, com \((v+U)+(w+U)=(v+w)+U\) e \(\lambda(v+U)=\lambda v+U\). Vale \(v+U=w+U \iff v-w\in U\).</p></div>
+  <div class="callout thm"><div class="lbl">3.89 — Dimensão do quociente</div>
+  <p>\[\dim(V/U)=\dim V-\dim U.\]</p></div>
+  <div class="callout thm"><div class="lbl">3.88 / 3.91 — Aplicação quociente e \(\tilde T\)</div>
+  <p>A <b>aplicação quociente</b> \(\pi:V\to V/U\), \(\pi(v)=v+U\), é linear e sobrejetiva com \(\operatorname{null}\pi=U\). Toda \(T\in\mathcal{L}(V,W)\) induz \(\tilde T:V/(\operatorname{null}T)\to W\), que é <b>injetiva</b> e satisfaz \(V/(\operatorname{null}T)\cong\operatorname{range}T\) — a versão abstrata do teorema fundamental.</p></div>`,
   py:R`import numpy as np
 
 # dim(V/U) = dim V - dim U, com V=R^3 e U=eixo x
@@ -233,10 +459,20 @@ v1 = np.array([1,2,3.]); v2 = np.array([5,2,3.])
 print("mesmo coset ?", np.allclose((v1-v2)[1:], 0))  # diferem só em x`},
  {code:"3F",id:"03F",nb:"03F_duality.ipynb",title:"Dualidade",en:"Duality",pages:"105–115",
   tags:["Funcional linear","Espaço dual","Transposta"],
-  body:R`<p>Um <b>funcional linear</b> é \(\varphi:V\to\mathbb{F}\) linear. O <b>espaço dual</b> \(V'=\mathcal{L}(V,\mathbb{F})\), com \(\dim V'=\dim V\).</p>
-  <p>A base dual \(\varphi_1,\dots,\varphi_n\) satisfaz \(\varphi_i(v_j)=\delta_{ij}\). O <b>dual</b> de \(T\) é \(T'(\varphi)=\varphi\circ T\); sua matriz é a <b>transposta</b>.</p>
-  <div class="callout thm"><div class="lbl">Teorema</div>
-  <p>\(\dim\operatorname{range}T=\dim\operatorname{range}T'\): o <b>posto por colunas</b> = <b>posto por linhas</b>.</p></div>`,
+  body:R`<div class="callout def"><div class="lbl">Definição 3.92 / 3.94 — Funcional linear e espaço dual</div>
+  <p>Um <b>funcional linear</b> em \(V\) é uma aplicação linear \(\varphi:V\to\mathbb{F}\). O <b>espaço dual</b> é \(V'=\mathcal{L}(V,\mathbb{F})\); se \(\dim V<\infty\) então \(\dim V'=\dim V\) (3.95).</p></div>
+  <div class="callout def"><div class="lbl">Definição 3.96 — Base dual</div>
+  <p>Dada base \(v_1,\dots,v_n\) de \(V\), a <b>base dual</b> \(\varphi_1,\dots,\varphi_n\) de \(V'\) é definida por
+  \[\varphi_j(v_k)=\delta_{jk}=\begin{cases}1,&k=j\\0,&k\ne j.\end{cases}\]
+  Na base canônica de \(\mathbb{F}^n\), \(\varphi_j\) seleciona a \(j\)-ésima coordenada.</p></div>
+  <div class="callout def"><div class="lbl">Definição 3.99 — Aplicação dual</div>
+  <p>Para \(T\in\mathcal{L}(V,W)\), a <b>dual</b> \(T'\in\mathcal{L}(W',V')\) é \(T'(\varphi)=\varphi\circ T\). Propriedades: \((S+T)'=S'+T'\), \((\lambda T)'=\lambda T'\) e \((ST)'=T'S'\) (ordem invertida). Sua matriz é a <b>transposta</b>: \(\mathcal{M}(T')=\mathcal{M}(T)^{\mathsf t}\).</p></div>
+  <div class="callout def"><div class="lbl">Definição 3.102 — Anulador</div>
+  <p>Para \(U\subseteq V\), o <b>anulador</b> \(U^0=\{\varphi\in V':\varphi(u)=0\ \forall u\in U\}\) é subespaço de \(V'\), com \(\dim U+\dim U^0=\dim V\) (3.106).</p></div>
+  <div class="callout thm"><div class="lbl">3.107–3.118 — Núcleo, imagem e posto do dual</div>
+  <p>\(\operatorname{null}T'=(\operatorname{range}T)^0\) e \(\operatorname{range}T'=(\operatorname{null}T)^0\). Assim \(T\) é sobrejetiva \(\iff T'\) injetiva (e vice-versa). Sobretudo:
+  \[\dim\operatorname{range}T'=\dim\operatorname{range}T,\]
+  isto é, o <b>posto por linhas = posto por colunas</b> de uma matriz.</p></div>`,
   py:R`import numpy as np
 
 A = np.array([[1,2,3],[4,5,6.]])
