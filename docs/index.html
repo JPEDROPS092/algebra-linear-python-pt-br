@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Álgebra Linear com Python · IFAM</title>
+<meta name="description" content="Curso interativo de Álgebra Linear (Axler) com teoria em LaTeX e demonstrações em Python — Instituto Federal do Amazonas.">
+<link rel="icon" type="image/png" href="assets/img/IFAM.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- highlight.js (leve, tema github-dark) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+<!-- MathJax 3 -->
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] },
+  svg: { fontCache: 'global' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre','code'] }
+};
+</script>
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuBtn" class="menu-btn" aria-label="menu">☰</button>
+    <a href="#" id="homeLink" class="brand">
+      <img src="assets/img/IFAM.png" alt="IFAM — Instituto Federal do Amazonas">
+      <span class="sep"></span>
+      <span class="titles"><small>Instituto Federal do Amazonas</small><b>Álgebra Linear com Python</b></span>
+    </a>
+    <span class="grow"></span>
+    <label class="search">🔎<input id="q" placeholder="Buscar seção, tópico…" autocomplete="off"></label>
+    <a class="ghlink" href="https://github.com/SEU_USUARIO/algebra-linear-python-pt-br" target="_blank" rel="noopener">★ GitHub</a>
+  </header>
+
+  <div class="layout">
+    <aside id="sidebar" class="sidebar">
+      <h4>Sumário do Livro</h4>
+      <div id="nav"></div>
+    </aside>
+    <main id="main" class="main"></main>
+  </div>
+
+  <footer class="footer">
+    <p>Feito para estudo no <b>IFAM</b> · Baseado em <i>Linear Algebra Done Right</i>, Sheldon Axler (Springer, 4ª ed.).<br>
+    O livro é propriedade de Sheldon Axler / Springer — este site é material de estudo e não contém cópias do livro. Licença MIT.</p>
+  </footer>
+
+  <script src="assets/js/content.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" id="MathJax-script" async></script>
+</body>
+</html>

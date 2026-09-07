@@ -1,0 +1,323 @@
+- generic [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - link "IFAM — Instituto Federal do Amazonas Instituto Federal do Amazonas Álgebra Linear com Python" [ref=f1e3] [cursor=pointer]:
+      - /url: "#"
+      - img "IFAM — Instituto Federal do Amazonas" [ref=f1e4]
+      - generic [ref=f1e6]:
+        - generic [ref=f1e7]: Instituto Federal do Amazonas
+        - text: Álgebra Linear com Python
+    - generic [ref=f1e8]:
+      - text: 🔎
+      - textbox "🔎" [ref=f1e9]:
+        - /placeholder: Buscar seção, tópico…
+    - link "★ GitHub" [ref=f1e10] [cursor=pointer]:
+      - /url: https://github.com/SEU_USUARIO/algebra-linear-python-pt-br
+  - generic [ref=f1e11]:
+    - complementary [ref=f1e12]:
+      - heading "Sumário do Livro" [level=4] [ref=f1e13]
+      - generic [ref=f1e14]:
+        - generic [ref=f1e15]:
+          - button "1 Espaços Vetoriais ▸" [ref=f1e16] [cursor=pointer]:
+            - generic [ref=f1e17]: "1"
+            - generic [ref=f1e18]: Espaços Vetoriais
+            - generic [ref=f1e19]: ▸
+          - generic [ref=f1e20]:
+            - link "1A Rⁿ e Cⁿ" [ref=f1e21] [cursor=pointer]:
+              - /url: "#01A"
+              - generic [ref=f1e22]: 1A
+              - generic [ref=f1e23]: Rⁿ e Cⁿ
+            - link "1B Definição de espaço vetorial" [ref=f1e24] [cursor=pointer]:
+              - /url: "#01B"
+              - generic [ref=f1e25]: 1B
+              - generic [ref=f1e26]: Definição de espaço vetorial
+            - link "1C Subespaços" [ref=f1e27] [cursor=pointer]:
+              - /url: "#01C"
+              - generic [ref=f1e28]: 1C
+              - generic [ref=f1e29]: Subespaços
+        - button "2 Espaços de Dimensão Finita ▸" [ref=f1e31] [cursor=pointer]:
+          - generic [ref=f1e32]: "2"
+          - generic [ref=f1e33]: Espaços de Dimensão Finita
+          - generic [ref=f1e34]: ▸
+        - button "3 Aplicações Lineares ▸" [ref=f1e36] [cursor=pointer]:
+          - generic [ref=f1e37]: "3"
+          - generic [ref=f1e38]: Aplicações Lineares
+          - generic [ref=f1e39]: ▸
+        - button "4 Polinômios ▸" [ref=f1e41] [cursor=pointer]:
+          - generic [ref=f1e42]: "4"
+          - generic [ref=f1e43]: Polinômios
+          - generic [ref=f1e44]: ▸
+        - button "5 Autovalores e Autovetores ▸" [ref=f1e46] [cursor=pointer]:
+          - generic [ref=f1e47]: "5"
+          - generic [ref=f1e48]: Autovalores e Autovetores
+          - generic [ref=f1e49]: ▸
+        - button "6 Espaços com Produto Interno ▸" [ref=f1e51] [cursor=pointer]:
+          - generic [ref=f1e52]: "6"
+          - generic [ref=f1e53]: Espaços com Produto Interno
+          - generic [ref=f1e54]: ▸
+        - button "7 Operadores em Espaços com Produto Interno ▸" [ref=f1e56] [cursor=pointer]:
+          - generic [ref=f1e57]: "7"
+          - generic [ref=f1e58]: Operadores em Espaços com Produto Interno
+          - generic [ref=f1e59]: ▸
+        - button "8 Operadores em Espaços Vetoriais Complexos ▸" [ref=f1e61] [cursor=pointer]:
+          - generic [ref=f1e62]: "8"
+          - generic [ref=f1e63]: Operadores em Espaços Vetoriais Complexos
+          - generic [ref=f1e64]: ▸
+        - button "9 Álgebra Multilinear e Determinantes ▸" [ref=f1e66] [cursor=pointer]:
+          - generic [ref=f1e67]: "9"
+          - generic [ref=f1e68]: Álgebra Multilinear e Determinantes
+          - generic [ref=f1e69]: ▸
+    - main [ref=f1e70]:
+      - article [ref=f1e71]:
+        - generic [ref=f1e72]:
+          - link "Início" [ref=f1e73] [cursor=pointer]:
+            - /url: "#"
+          - text: › Capítulo 1 — Espaços Vetoriais › 1A
+        - heading "1A · Rⁿ e Cⁿ" [level=1] [ref=f1e74]
+        - generic [ref=f1e75]: Rⁿ and Cⁿ — páginas 2–10
+        - generic [ref=f1e76]:
+          - generic [ref=f1e77]: 📓 01A_Rn_and_Cn.ipynb
+          - generic [ref=f1e78]: Números complexos
+          - generic [ref=f1e79]: Listas
+          - generic [ref=f1e80]: Corpos
+        - heading "Teoria" [level=2] [ref=f1e81]
+        - paragraph [ref=f1e82]:
+          - text: A álgebra linear estuda estruturas construídas sobre um corpo
+          - math [ref=f1e91]:
+            - generic [ref=f1e92]: F
+          - text: ", que aqui será"
+          - math [ref=f1e102]:
+            - generic [ref=f1e103]: R
+          - text: (reais) ou
+          - math [ref=f1e113]:
+            - generic [ref=f1e114]: C
+          - text: (complexos). Um número complexo tem a forma
+          - math [ref=f1e133]:
+            - generic [ref=f1e134]: z
+            - generic [ref=f1e135]: =
+            - generic [ref=f1e136]: a
+            - generic [ref=f1e137]: +
+            - generic [ref=f1e138]: b
+            - generic [ref=f1e139]: i
+          - text: ", com"
+          - math [ref=f1e156]:
+            - generic [ref=f1e157]: a
+            - generic [ref=f1e158]: ","
+            - generic [ref=f1e159]: b
+            - generic [ref=f1e160]: ∈
+            - generic [ref=f1e161]: R
+          - text: e
+          - math [ref=f1e179]:
+            - generic [ref=f1e180]:
+              - generic [ref=f1e181]: i
+              - generic [ref=f1e182]: "2"
+            - generic [ref=f1e183]: =
+            - generic [ref=f1e184]: −
+            - generic [ref=f1e185]: "1"
+          - text: .
+        - generic [ref=f1e186]:
+          - generic [ref=f1e187]:
+            - text: Definição —
+            - math [ref=f1e199]:
+              - generic [ref=f1e200]:
+                - generic [ref=f1e201]: F
+                - generic [ref=f1e203]: "n"
+          - paragraph [ref=f1e204]:
+            - math [ref=f1e216]:
+              - generic [ref=f1e217]:
+                - generic [ref=f1e218]: F
+                - generic [ref=f1e220]: "n"
+            - text: é o conjunto de todas as listas de comprimento
+            - math [ref=f1e228]:
+              - generic [ref=f1e229]: "n"
+            - text: com entradas em
+            - math [ref=f1e238]:
+              - generic [ref=f1e239]: F
+            - text: ":"
+            - math [ref=f1e308]:
+              - generic [ref=f1e309]:
+                - generic [ref=f1e310]: F
+                - generic [ref=f1e312]: "n"
+              - generic [ref=f1e313]: =
+              - generic [ref=f1e314]: "{"
+              - generic [ref=f1e315]: (
+              - generic [ref=f1e316]:
+                - generic [ref=f1e317]: x
+                - generic [ref=f1e318]: "1"
+              - generic [ref=f1e319]: ","
+              - generic [ref=f1e320]: …
+              - generic [ref=f1e321]: ","
+              - generic [ref=f1e322]:
+                - generic [ref=f1e323]: x
+                - generic [ref=f1e324]: "n"
+              - generic [ref=f1e325]: )
+              - generic [ref=f1e326]: ":"
+              - generic [ref=f1e327]:
+                - generic [ref=f1e328]: x
+                - generic [ref=f1e329]: j
+              - generic [ref=f1e330]: ∈
+              - generic [ref=f1e331]: F
+              - generic [ref=f1e333]: ","
+              - generic [ref=f1e334]: j
+              - generic [ref=f1e335]: =
+              - generic [ref=f1e336]: "1"
+              - generic [ref=f1e337]: ","
+              - generic [ref=f1e338]: …
+              - generic [ref=f1e339]: ","
+              - generic [ref=f1e340]: "n"
+              - generic [ref=f1e341]: "}"
+              - generic [ref=f1e342]: .
+        - paragraph [ref=f1e343]:
+          - text: "Soma e multiplicação por escalar são definidas coordenada a coordenada:"
+          - math [ref=f1e479]:
+            - generic [ref=f1e480]: (
+            - generic [ref=f1e481]:
+              - generic [ref=f1e482]: x
+              - generic [ref=f1e483]: "1"
+            - generic [ref=f1e484]: ","
+            - generic [ref=f1e485]: …
+            - generic [ref=f1e486]: ","
+            - generic [ref=f1e487]:
+              - generic [ref=f1e488]: x
+              - generic [ref=f1e489]: "n"
+            - generic [ref=f1e490]: )
+            - generic [ref=f1e491]: +
+            - generic [ref=f1e492]: (
+            - generic [ref=f1e493]:
+              - generic [ref=f1e494]: "y"
+              - generic [ref=f1e495]: "1"
+            - generic [ref=f1e496]: ","
+            - generic [ref=f1e497]: …
+            - generic [ref=f1e498]: ","
+            - generic [ref=f1e499]:
+              - generic [ref=f1e500]: "y"
+              - generic [ref=f1e501]: "n"
+            - generic [ref=f1e502]: )
+            - generic [ref=f1e503]: =
+            - generic [ref=f1e504]: (
+            - generic [ref=f1e505]:
+              - generic [ref=f1e506]: x
+              - generic [ref=f1e507]: "1"
+            - generic [ref=f1e508]: +
+            - generic [ref=f1e509]:
+              - generic [ref=f1e510]: "y"
+              - generic [ref=f1e511]: "1"
+            - generic [ref=f1e512]: ","
+            - generic [ref=f1e513]: …
+            - generic [ref=f1e514]: ","
+            - generic [ref=f1e515]:
+              - generic [ref=f1e516]: x
+              - generic [ref=f1e517]: "n"
+            - generic [ref=f1e518]: +
+            - generic [ref=f1e519]:
+              - generic [ref=f1e520]: "y"
+              - generic [ref=f1e521]: "n"
+            - generic [ref=f1e522]: )
+            - generic [ref=f1e523]: ","
+            - generic [ref=f1e524]: λ
+            - generic [ref=f1e525]: (
+            - generic [ref=f1e526]:
+              - generic [ref=f1e527]: x
+              - generic [ref=f1e528]: "1"
+            - generic [ref=f1e529]: ","
+            - generic [ref=f1e530]: …
+            - generic [ref=f1e531]: ","
+            - generic [ref=f1e532]:
+              - generic [ref=f1e533]: x
+              - generic [ref=f1e534]: "n"
+            - generic [ref=f1e535]: )
+            - generic [ref=f1e536]: =
+            - generic [ref=f1e537]: (
+            - generic [ref=f1e538]: λ
+            - generic [ref=f1e539]:
+              - generic [ref=f1e540]: x
+              - generic [ref=f1e541]: "1"
+            - generic [ref=f1e542]: ","
+            - generic [ref=f1e543]: …
+            - generic [ref=f1e544]: ","
+            - generic [ref=f1e545]: λ
+            - generic [ref=f1e546]:
+              - generic [ref=f1e547]: x
+              - generic [ref=f1e548]: "n"
+            - generic [ref=f1e549]: )
+            - generic [ref=f1e550]: .
+        - generic [ref=f1e551]:
+          - generic [ref=f1e552]: Propriedade — Comutatividade
+          - paragraph [ref=f1e553]:
+            - text: Para todos
+            - math [ref=f1e573]:
+              - generic [ref=f1e574]: x
+              - generic [ref=f1e575]: ","
+              - generic [ref=f1e576]: "y"
+              - generic [ref=f1e577]: ∈
+              - generic [ref=f1e578]:
+                - generic [ref=f1e579]: F
+                - generic [ref=f1e581]: "n"
+            - text: ":"
+            - math [ref=f1e601]:
+              - generic [ref=f1e602]: x
+              - generic [ref=f1e603]: +
+              - generic [ref=f1e604]: "y"
+              - generic [ref=f1e605]: =
+              - generic [ref=f1e606]: "y"
+              - generic [ref=f1e607]: +
+              - generic [ref=f1e608]: x
+            - text: . A soma herda a comutatividade da adição em
+            - math [ref=f1e617]:
+              - generic [ref=f1e618]: F
+            - text: .
+        - heading "Conjugado e módulo" [level=2] [ref=f1e620]
+        - paragraph [ref=f1e621]:
+          - text: O conjugado de
+          - math [ref=f1e639]:
+            - generic [ref=f1e640]: z
+            - generic [ref=f1e641]: =
+            - generic [ref=f1e642]: a
+            - generic [ref=f1e643]: +
+            - generic [ref=f1e644]: b
+            - generic [ref=f1e645]: i
+          - text: é
+          - math [ref=f1e667]:
+            - generic [ref=f1e669]:
+              - generic [ref=f1e670]: z
+              - generic [ref=f1e671]: ¯
+            - generic [ref=f1e672]: =
+            - generic [ref=f1e673]: a
+            - generic [ref=f1e674]: −
+            - generic [ref=f1e675]: b
+            - generic [ref=f1e676]: i
+          - text: ; o módulo é
+          - math [ref=f1e723]:
+            - generic [ref=f1e724]: "|"
+            - generic [ref=f1e725]: z
+            - generic [ref=f1e726]: "|"
+            - generic [ref=f1e728]: =
+            - generic [ref=f1e729]:
+              - generic [ref=f1e730]:
+                - generic [ref=f1e731]: a
+                - generic [ref=f1e732]: "2"
+              - generic [ref=f1e733]: +
+              - generic [ref=f1e734]:
+                - generic [ref=f1e735]: b
+                - generic [ref=f1e736]: "2"
+            - generic [ref=f1e737]: =
+            - generic [ref=f1e738]:
+              - generic [ref=f1e739]: z
+              - generic [ref=f1e741]:
+                - generic [ref=f1e742]: z
+                - generic [ref=f1e743]: ¯
+          - text: .
+        - heading "Demonstração em Python" [level=2] [ref=f1e744]
+        - generic [ref=f1e745]:
+          - generic [ref=f1e746]:
+            - generic [ref=f1e750]: 1A · 01A_Rn_and_Cn.ipynb
+            - button "copiar" [ref=f1e751] [cursor=pointer]
+          - code [ref=f1e753]: "import numpy as np # Números complexos e F^n z = 3 + 4j print(\"conjugado:\", z.conjugate(), \"| módulo:\", abs(z)) # (3-4j) | 5.0 # Vetores em R^n e C^n (listas de comprimento n) x = np.array([1, 2, 3]) y = np.array([4, 5, 6]) print(\"soma coordenada a coordenada:\", x + y) # [5 7 9] print(\"multiplicação por escalar:\", 2 * x) # [2 4 6] # Comutatividade print(\"x+y == y+x ?\", np.array_equal(x + y, y + x))"
+        - generic [ref=f1e754]:
+          - checkbox "Marcar seção como concluída" [ref=f1e755]
+          - generic [ref=f1e756]: Marcar seção como concluída
+        - link "Próxima 1B · Definição de espaço vetorial" [ref=f1e758] [cursor=pointer]:
+          - /url: "#01B"
+          - generic [ref=f1e759]: Próxima
+          - text: 1B · Definição de espaço vetorial
+  - contentinfo [ref=f1e760]:
+    - paragraph [ref=f1e761]: Feito para estudo no IFAM · Baseado em Linear Algebra Done Right, Sheldon Axler (Springer, 4ª ed.). O livro é propriedade de Sheldon Axler / Springer — este site é material de estudo e não contém cópias do livro. Licença MIT.
